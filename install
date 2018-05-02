@@ -1,0 +1,123 @@
+#!/usr/bin/env ruby
+
+def append(file, text)
+  File.open(path file, 'a') { |f| f.write(text) }
+end
+
+def append_line(file, text)
+  append(file, text + "\n")
+end
+
+def contains_line(file, regexp)
+  File.foreach(path file).grep(regexp).any?
+end
+
+def dir_exists(file)
+  exists = Dir.exist? path(file)
+  puts "directory '#{path}' exists" if exists
+  puts "directory '#{path}' does not exist" unless exists
+end
+
+def install(file_name)
+  symlink_file (path_home file_name) (path_repo file_name)
+end
+
+def path(path)
+  File.expand_path path
+end
+
+def path_home(path)
+  path File.join(Dir.home, path)
+end
+
+def path_repo(path)
+  path File.join(File.dirname(__FILE__), path)
+end
+
+def run(cmd)
+  puts cmd
+  result = system cmd
+  puts 'failed' unless result
+  result
+end
+
+def save(path)
+  path = File.expand_path path
+  return false unless File.exist? path
+  run "cp -R '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'"
+  true
+end
+
+def symlink_file(from, to)
+  from = path from
+  to = path to
+  save from
+  File.delete from
+  run "ln -s '#{to}' '#{from}'"
+end
+
+run 'sudo -v'
+run "cd #{path_repo .}"
+run 'git pull origin master'
+
+# Files
+install '.Brewfile'
+install '.ackrc'
+install '.aliases'
+install '.curlrc'
+install '.editorconfig'
+install '.exports'
+install '.functions'
+install '.gbdinit'
+install '.gitconfig'
+install '.gitignore'
+install '.hushlogin'
+install '.inputrc'
+install '.zshrc'
+
+# Xcode
+unless run 'xcode-select -p'
+  run 'xcode-select --install'
+  sleep 10 until run 'xcode-select -p'
+end
+run 'sudo xcodebuild -license accept'
+
+# Homebrew
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless run 'which brew'
+run 'brew bundle --global'
+run 'brew cleanup'
+run 'brew cask cleanup'
+run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
+append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells' /\/usr\/local\/bin\/bash/
+append_line '/etc/shells' '/usr/local/bin/zsh' unless contains_line '/etc/shells' /\/usr\/local\/bin\/zsh/
+
+# SSH
+idrsa = save '~/.ssh/id_rsa'
+idrsapub = save '~/.ssh/id_rsa.pub'
+if !idrsa || !idrsapub
+  run 'ssh-keygen -t rsa -N ""'
+end
+
+# Go
+run "go get #{%w(
+  github.com/alecthomas/gometalinter
+  github.com/golang/dep/cmd/dep
+  github.com/golang/lint/golint
+  github.com/govend/govend
+  github.com/mailgun/godebug
+  github.com/nsf/gocode
+  github.com/rogpeppe/godef
+  github.com/zmb3/gogetdoc
+  golang.org/x/tools/cmd/eg
+  golang.org/x/tools/cmd/goimports
+  golang.org/x/tools/cmd/gorename
+  golang.org/x/tools/cmd/guru
+  golang.org/x/tools/cmd/present
+).join(' ')}"
+
+# Vim
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
+
+# Zsh
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh"' unless dir_exists '~/.oh-my-zsh'

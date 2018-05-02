@@ -1,0 +1,51 @@
+[advice]
+	detachedhead = false
+[alias]
+	code-commits = "!f() { git log --pretty=format:'%C(yellow)%h	%Cblue%ad	%Creset%s%Cgreen	[%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+	commit-all = "!git add -A && git commit -av"
+	commit-branches = "!f() { git branch -a --contains $1; }; f"
+	commit-tags = "!f() { git describe --always --contains $1; }; f"
+	contributors = "shortlog --summary --numbered"
+	delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	history = "log --pretty=oneline -n 20 --graph --abbrev-commit"
+	message-commits = "!f() { git log --pretty=format:'%C(yellow)%h	%Cblue%ad	%Creset%s%Cgreen	[%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	pull-all = "!git pull origin master; git submodule foreach git pull origin master"
+[apply]
+	whitespace = fix
+[branch]
+	autosetuprebase = always
+[color]
+	ui = true
+[core]
+	autocrlf = input
+	precomposeunicode = false
+	safecrlf = true
+	trustctime = false
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+[diff]
+	renames = copies
+[diff "bin"]
+	textconv = hexdump -v -C
+[help]
+	autocorrect = 1
+[include]
+	path = ~/.gitconfig.local
+[merge]
+	defaulttoupstream = true
+	log = true
+[pager]
+  branch = false
+[pull]
+	rebase = true
+[push]
+	default = current
+	followTags = true
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[user]
+	email = will.faught@gmail.com
+	name = Will Faught

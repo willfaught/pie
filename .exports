@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+export CLICOLOR='1'
+export COMPLETION_WAITING_DOTS='true'
+export EDITOR='vim'
+export GOPATH="$HOME/Developer/go"
+export HISTCONTROL='ignoreboth'
+export HISTFILESIZE="$HISTSIZE"
+export HISTIGNORE="&:bg:clear:exit:fg:history:jobs:pwd:* --help:* --version"
+export HISTSIZE='32768'
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+export NODE_REPL_HISTORY_SIZE='32768'
+export PATH="$PATH:$GOPATH/bin:/Library/TeX/texbin"
+export PYTHONIOENCODING='UTF-8'
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_THEME='robbyrussell'
