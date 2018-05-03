@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 
+class String
+  def red; "\e[31m#{self}\e[0m" end
+  def magenta; "\e[35m#{self}\e[0m" end
+  def bold; "\e[1m#{self}\e[22m" end
+end
+
 def append(file, text)
   File.open(path file, 'a') { |f| f.write(text) }
 end
@@ -12,14 +18,16 @@ def contains_line(file, regexp)
   File.foreach(path file).grep(regexp).any?
 end
 
-def dir_exists(file)
-  exists = Dir.exist? path(file)
-  puts "directory '#{path}' exists" if exists
-  puts "directory '#{path}' does not exist" unless exists
+def dir_exists(dir_path)
+  Dir.exist? (path dir_path)
+end
+
+def file_exists(file_path)
+  File.exist? (path file_path)
 end
 
 def install(file_name)
-  symlink_file (path_home file_name) (path_repo file_name)
+  symlink (path_home file_name), (path_repo file_name)
 end
 
 def path(path)
@@ -35,9 +43,9 @@ def path_repo(path)
 end
 
 def run(cmd)
-  puts cmd
+  puts cmd.magenta.bold
   result = system cmd
-  puts 'failed' unless result
+  puts 'failed'.red.bold unless result
   result
 end
 
@@ -48,16 +56,20 @@ def save(path)
   true
 end
 
-def symlink_file(from, to)
+def symlink(from, to)
   from = path from
   to = path to
+  return if File.symlink?(from) && File.readlink(from) == to
   save from
-  File.delete from
+  run "rm -rf '#{from}'" if File.exist? from
   run "ln -s '#{to}' '#{from}'"
 end
 
 run 'sudo -v'
-run 'git pull origin master'
+run "git -C '#{path_repo '.'}' pull origin master"
+
+# Operating system
+# run "#{path_repo '.'}/.macos"
 
 # Files
 install '.Brewfile'
@@ -82,19 +94,19 @@ end
 run 'sudo xcodebuild -license accept'
 
 # Homebrew
-run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless run 'which brew'
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
 run 'brew bundle --global'
 run 'brew cleanup'
 run 'brew cask cleanup'
 run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
 append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
-append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells' /\/usr\/local\/bin\/bash/
-append_line '/etc/shells' '/usr/local/bin/zsh' unless contains_line '/etc/shells' /\/usr\/local\/bin\/zsh/
+append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+append_line '/etc/shells' '/usr/local/bin/zsh' unless contains_line '/etc/shells', /\/usr\/local\/bin\/zsh/
 
 # SSH
-idrsa = save '~/.ssh/id_rsa'
-idrsapub = save '~/.ssh/id_rsa.pub'
-if !idrsa || !idrsapub
+unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+  save '~/.ssh/id_rsa' if file_exists '~/.ssh/id_rsa'
+  save '~/.ssh/id_rsa.pub' if file_exists '~/.ssh/id_rsa.pub'
   run 'ssh-keygen -t rsa -N ""'
 end
 
