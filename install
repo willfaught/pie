@@ -57,7 +57,6 @@ def symlink_file(from, to)
 end
 
 run 'sudo -v'
-run "cd #{path_repo .}"
 run 'git pull origin master'
 
 # Files
