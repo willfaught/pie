@@ -70,7 +70,7 @@ run "git -C '#{path_repo '.'}' pull origin master"
 
 # Operating system
 require 'rbconfig'
-# run "#{path_repo '.'}/.macos" if RbConfig::CONFIG['host_os'].downcase.include?('darwin')
+run "#{path_repo '.'}/.macos" if RbConfig::CONFIG['host_os'].downcase.include?('darwin')
 
 # Files
 install '.Brewfile'
