@@ -13,7 +13,6 @@ My Unix dotfiles. Installation updates the repository and then does any of the f
 - Installs Xcode
 - Makes an SSH key with no password
 - Symlinks the dotfiles into the home directory
-- Updates the repository
 
 To install, run: `git clone https://github.com/willfaught/dotfiles ~/.dotfiles && ~/.dotfiles/install`.
 
