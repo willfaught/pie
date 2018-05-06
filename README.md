@@ -3,7 +3,7 @@
 My Unix dotfiles. Installation updates the repository and then does any of the following if needed:
 
 - Adds /usr/local/bin/bash and /usr/local/bin/zsh to /etc/shells
-- Adds /usr/local/sbin to PATH
+- Adds /usr/local/sbin to /etc/paths
 - Configures macOS if present
 - Installs Go tools
 - Installs Homebrew
