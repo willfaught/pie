@@ -36,12 +36,12 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 alias cd......='cd ../../../../..'
 
-alias cl='clear'
-
 alias cdd="cd $HOME/Developer"
 alias cdg="cd $HOME/Developer/go"
 alias cds="cd $HOME/Developer/go/src"
 alias cdw="cd $HOME/Developer/go/src/github.com/willfaught"
+
+alias cl='clear'
 
 alias cp='cp -i'
 
