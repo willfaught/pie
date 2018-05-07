@@ -16,7 +16,7 @@ end
 
 def backup(path)
   path = File.expand_path path
-  run "cp -R '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if File.exist? path
+  run "cp -R '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
 end
 
 def contains_line(path, regexp)
@@ -24,11 +24,18 @@ def contains_line(path, regexp)
 end
 
 def dir_exists(path)
-  Dir.exist? (File.expand_path path)
+  path = File.expand_path path
+  Dir.exist?(path) || File.symlink?(path)
+end
+
+def exists(path)
+  path = File.expand_path path
+  Dir.exist?(path) || File.exist?(path) || File.symlink?(path)
 end
 
 def file_exists(path)
-  File.exist? (File.expand_path path)
+  path = File.expand_path path
+  File.exist?(path) || File.symlink?(path)
 end
 
 def install(file_name)
@@ -55,7 +62,7 @@ def symlink(from_path, to_path)
   to_path = File.expand_path to_path
   return if File.symlink?(from_path) && File.readlink(from_path) == to_path
   backup from_path
-  run "rm -rf '#{from_path}'" if File.exist? from_path
+  run "rm -rf '#{from_path}'" if exists from_path
   run "ln -s '#{to_path}' '#{from_path}'"
 end
 
