@@ -189,10 +189,13 @@ alias up4='cd ../../../..'
 alias up5='cd ../../../../..'
 
 alias vi='vim'
-alias vid='vi Dockerfile'
+alias via='vi ~/.aliases; test -e ~/.aliases && source ~/.aliases; true'
 alias vic='vi docker-compose.yml'
-alias viz='vi ~/.zshrc && source ~/.zshrc'
-alias vizl='vi ~/.zshrc.local; test -e ~/.zshrc.local && source ~/.zshrc.local; true'
+alias vid='vi Dockerfile'
+alias vie='vi ~/.exports; test -e ~/.exports && source ~/.exports; true'
+alias vif='vi ~/.functions; test -e ~/.functions && source ~/.functions; true'
+alias vil='vi ~/.local; test -e ~/.local && source ~/.local; true'
+alias viz='vi ~/.zshrc; test -e ~/.zshrc && source ~/.zshrc; true'
 
 alias web='python -m SimpleHTTPServer 8080'
 
