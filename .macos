@@ -147,7 +147,7 @@ defaults write com.apple.finder QuitMenuItem -bool true # Allow quitting via ⌘
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false # Hide external hard drives on the desktop
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false # Hide hard drives on the desktop
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false # Hide mounted servers on the desktop
-defaults write com.apple.finder ShowPathbar -bool true # Show path bar
+defaults write com.apple.finder ShowPathbar -bool false # Hide path bar
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false # Hide removable media on the desktop
 defaults write com.apple.finder ShowStatusBar -bool true # Show status bar
 
