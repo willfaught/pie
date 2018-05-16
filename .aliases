@@ -137,6 +137,8 @@ alias gish='git show'
 alias gishw='git show --word-diff=color'
 
 alias gob='go build ./...'
+alias god='go doc'
+alias godu='go doc -u'
 alias gof='go fmt ./...'
 alias gog='go generate ./...'
 alias goi='go install ./...'
