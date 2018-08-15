@@ -35,7 +35,7 @@ path = ~/.gitconfig.local
 defaulttoupstream = true
 log = true
 [pager]
-  branch = false
+branch = false
 [pull]
 rebase = true
 [push]
