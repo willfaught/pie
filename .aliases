@@ -26,7 +26,7 @@ alias brn='brew info'
 alias brr='brew rm'
 alias brs='brew search'
 alias bru='brew update && brew upgrade'
-alias bruc='brew update && brew upgrade && brew cleanup && brew cask cleanup'
+alias bruc='brew update && brew upgrade && brew cleanup'
 alias brud='brew update'
 alias brug='brew upgrade'
 
