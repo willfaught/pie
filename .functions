@@ -6,6 +6,8 @@ function finish() { eval "$@" && finished "$@" }
 
 function gibdrb() { git checkout master && git pull origin && git checkout "$1" && git rebase master && git checkout master && git branch -d "$1" }
 
+function drop-lines-end() { awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}" }
+
 function notify() {
   local command=''
   if test -n "$1"; then command="$command with title \"$1\""; fi
