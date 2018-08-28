@@ -43,6 +43,10 @@ function page() { "$@" |& less -F }
 
 function port() { lsof -ni ":$1" | grep LISTEN }
 
+function take-lines() { awk "{l[NR] = \$0} END {for (i=1; i<=$1; i++) print l[i]}" }
+
+function take-lines-end() { awk "{l[NR] = \$0} END {for (i=NR-$1+1; i<=NR; i++) print l[i]}" }
+
 function up() { while test "$(pwd)" != "/" && test "$(basename "$(pwd)")" != "$1"; do cd ..; done }
 
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
