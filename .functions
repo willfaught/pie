@@ -6,6 +6,8 @@ function finish() { eval "$@" && finished "$@" }
 
 function gibdrb() { git checkout master && git pull origin && git checkout "$1" && git rebase master && git checkout master && git branch -d "$1" }
 
+function drop-lines() { awk "{l[NR] = \$0} END {for (i=1+$1; i<=NR; i++) print l[i]}" }
+
 function drop-lines-end() { awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}" }
 
 function notify() {
