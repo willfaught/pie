@@ -16,7 +16,7 @@ end
 
 def backup(path)
   path = File.expand_path path
-  run "cp -R '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
+  run "mv '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
 end
 
 def contains_line(path, regexp)
