@@ -99,7 +99,6 @@ run 'sudo xcodebuild -license accept'
 run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
 run 'brew bundle --global'
 run 'brew cleanup'
-run 'brew cask cleanup'
 run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
 append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
 append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
