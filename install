@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'rbconfig'
+
 class String
   def red; "\e[31m#{self}\e[0m" end
   def magenta; "\e[35m#{self}\e[0m" end
@@ -42,6 +44,10 @@ def install(file_name)
   symlink (path_home file_name), (path_repo file_name)
 end
 
+def mac
+  RbConfig::CONFIG['host_os'].downcase.include?('darwin')
+end
+
 def path_home(path)
   File.expand_path File.join(Dir.home, path)
 end
@@ -66,15 +72,13 @@ def symlink(from_path, to_path)
   run "ln -s '#{to_path}' '#{from_path}'"
 end
 
+# Authenticate
 run 'sudo -v'
+
+# Update
 run "git -C '#{path_repo '.'}' pull origin master"
 
-# Operating system
-require 'rbconfig'
-run "#{path_repo '.'}/.macos" if RbConfig::CONFIG['host_os'].downcase.include?('darwin')
-
 # Files
-install '.Brewfile'
 install '.ackrc'
 install '.aliases'
 install '.curlrc'
@@ -88,48 +92,39 @@ install '.hushlogin'
 install '.inputrc'
 install '.zshrc'
 
-# Xcode
-unless run 'xcode-select -p'
-  run 'xcode-select --install'
-  sleep 10 until run 'xcode-select -p'
-end
-run 'sudo xcodebuild -license accept'
-
-# Homebrew
-run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
-run 'brew bundle --global'
-run 'brew cleanup'
-run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
-append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
-append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
-append_line '/etc/shells' '/usr/local/bin/zsh' unless contains_line '/etc/shells', /\/usr\/local\/bin\/zsh/
-
-# SSH
+# Keys
 unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
   backup '~/.ssh/id_rsa' if file_exists '~/.ssh/id_rsa'
   backup '~/.ssh/id_rsa.pub' if file_exists '~/.ssh/id_rsa.pub'
   run 'ssh-keygen -t rsa -N ""'
 end
 
-# Go
-run "go get #{%w(
-  github.com/alecthomas/gometalinter
-  github.com/golang/dep/cmd/dep
-  github.com/golang/lint/golint
-  github.com/govend/govend
-  github.com/mailgun/godebug
-  github.com/nsf/gocode
-  github.com/rogpeppe/godef
-  github.com/zmb3/gogetdoc
-  golang.org/x/tools/cmd/eg
-  golang.org/x/tools/cmd/goimports
-  golang.org/x/tools/cmd/gorename
-  golang.org/x/tools/cmd/guru
-  golang.org/x/tools/cmd/present
-).join(' ')}"
-
 # Vim
 run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
 
 # Zsh
 run 'sh -c "curl -fsLS https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh"' unless dir_exists '~/.oh-my-zsh'
+
+if mac
+  # Configuration
+  run "#{path_repo '.'}/.macos" if mac
+
+  # Xcode
+  unless run 'xcode-select -p'
+    run 'xcode-select --install'
+    sleep 10 until run 'xcode-select -p'
+  end
+  run 'sudo xcodebuild -license accept'
+
+  # Homebrew
+  install '.Brewfile'
+  run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
+  run 'brew bundle --global'
+  run 'brew cleanup'
+  run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
+  append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+  append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+  append_line '/etc/shells' '/usr/local/bin/zsh' unless contains_line '/etc/shells', /\/usr\/local\/bin\/zsh/
+  run 'open /Applications/Docker.app'
+  run 'open /Applications/Dropbox.app'
+end
