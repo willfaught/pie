@@ -48,5 +48,5 @@ enabled = true
 [url "git@github.com:"]
 insteadOf = https://github.com/
 [user]
-email = will.faught@gmail.com
+email = will@willfaught.com
 name = Will Faught
