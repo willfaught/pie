@@ -8,14 +8,6 @@ class String
   def bold; "\e[1m#{self}\e[22m" end
 end
 
-def append(path, text)
-  File.open(File.expand_path path, 'a') { |f| f.write(text) }
-end
-
-def append_line(path, text)
-  append(path, text + "\n")
-end
-
 def backup(path)
   path = File.expand_path path
   run "mv '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
@@ -99,15 +91,10 @@ unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
   run 'ssh-keygen -t rsa -N ""'
 end
 
-# Vim
-run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
-
-# Zsh
-run 'sh -c "curl -fsLS https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh"' unless dir_exists '~/.oh-my-zsh'
-
 if mac
   # Configuration
-  run "#{path_repo '.'}/.macos" if mac
+  run "#{path_repo '.'}/.macos"
+  run "open #{path_repo '.'}/Solarized.terminal"
 
   # Xcode
   unless run 'xcode-select -p'
@@ -121,10 +108,16 @@ if mac
   run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
   run 'brew bundle --global'
   run 'brew cleanup'
-  run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
-  append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
-  append_line '/etc/shells', '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
-  append_line '/etc/shells', '/usr/local/bin/zsh' unless contains_line '/etc/shells', /\/usr\/local\/bin\/zsh/
+  run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null'  unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+  run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+  run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
+  run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
   run 'open /Applications/Docker.app'
   run 'open /Applications/Dropbox.app'
 end
+
+# Oh My Fish
+run 'curl -fsLS https://get.oh-my.fish | fish' if file_exists('/usr/local/bin/fish') && !dir_exists('~/.local/share/omf')
+
+# Vim
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' if file_exists('/usr/local/bin/vim') && !dir_exists('~/.vim')
