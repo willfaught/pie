@@ -123,8 +123,8 @@ if mac
   run 'brew cleanup'
   run 'chsh -s /usr/local/bin/zsh' unless ENV['SHELL'] == '/usr/local/bin/zsh'
   append_line '/etc/paths', '/usr/local/sbin' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
-  append_line '/etc/shells' '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
-  append_line '/etc/shells' '/usr/local/bin/zsh' unless contains_line '/etc/shells', /\/usr\/local\/bin\/zsh/
+  append_line '/etc/shells', '/usr/local/bin/bash' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+  append_line '/etc/shells', '/usr/local/bin/zsh' unless contains_line '/etc/shells', /\/usr\/local\/bin\/zsh/
   run 'open /Applications/Docker.app'
   run 'open /Applications/Dropbox.app'
 end
