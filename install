@@ -32,8 +32,9 @@ def file_exists(path)
   File.exist?(path) || File.symlink?(path)
 end
 
-def install(file_name)
-  symlink (path_home file_name), (path_repo file_name)
+def install(from, to = nil)
+  to = from if to == nil
+  symlink (path_home to), (path_repo from)
 end
 
 def mac
@@ -60,7 +61,8 @@ def symlink(from_path, to_path)
   to_path = File.expand_path to_path
   return if File.symlink?(from_path) && File.readlink(from_path) == to_path
   backup from_path
-  run "rm -rf '#{from_path}'" if exists from_path
+  from_dir = File.dirname(from_path)
+  Dir.mkdir(from_dir) if !dir_exists(from_dir)
   run "ln -s '#{to_path}' '#{from_path}'"
 end
 
@@ -72,17 +74,17 @@ run "git -C '#{path_repo '.'}' pull origin master"
 
 # Files
 install '.ackrc'
-install '.aliases'
 install '.curlrc'
 install '.editorconfig'
-install '.exports'
-install '.functions'
 install '.gbdinit'
 install '.gitconfig'
 install '.gitignore'
 install '.hushlogin'
 install '.inputrc'
-install '.zshrc'
+install 'aliases.fish', '.config/fish/aliases.fish'
+install 'config.fish', '.config/fish/config.fish'
+install 'functions.fish', '.config/fish/functions.fish'
+install 'variables.fish', '.config/fish/variables.fish'
 
 # Keys
 unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
@@ -108,7 +110,7 @@ if mac
   run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
   run 'brew bundle --global'
   run 'brew cleanup'
-  run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null'  unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+  run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
   run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
   run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
   run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
