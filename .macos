@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 set -x
 
@@ -133,27 +133,3 @@ sudo systemsetup -settimezone 'America/Los_Angeles' >/dev/null # Set the timezon
 # Remove duplicates in the "Open With" menu
 
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-
-# Terminal
-
-osascript <<EOT
-tell application "Terminal"
-	local allOpenedWindows
-	local initialOpenedWindows
-	local windowID
-	set themeName to "Solarized Dark xterm-256color"
-	set initialOpenedWindows to id of every window
-	do shell script "open '$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/Solarized.terminal'"
-	delay 1
-	set default settings to settings set themeName
-	set allOpenedWindows to id of every window
-	repeat with windowID in allOpenedWindows
-		if initialOpenedWindows does not contain windowID then
-			close (every window whose id is windowID)
-		else
-			set current settings of tabs of (every window whose id is windowID) to settings set themeName
-		end if
-	end repeat
-end tell
-
-EOT
