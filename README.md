@@ -6,9 +6,9 @@ My Unix dotfiles. Installation updates the repository and then does any of the f
 - Adds /usr/local/sbin to /etc/paths
 - Configures macOS if present
 - Installs Go tools
-- Installs Homebrew
+- Installs [Homebrew](https://brew.sh)
 - Installs Homebrew packages
-- Installs Janus (vim)
+- Installs [Janus](https://github.com/carlhuda/janus)
 - Installs Xcode
 - Makes an SSH key with no password
 - Symlinks the dotfiles into the home directory
