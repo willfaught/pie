@@ -10,6 +10,7 @@ My Unix dotfiles. Installation updates the repository and then does any of the f
 - Installs Homebrew packages
 - Installs [Janus](https://github.com/carlhuda/janus)
 - Installs Xcode
+- Installs Xcode Command Line Tools
 - Makes an SSH key with no password
 - Symlinks the dotfiles into the home directory
 
