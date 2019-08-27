@@ -1,4 +1,5 @@
 brew 'ack'
+brew 'awscli'
 brew 'bash'
 brew 'binutils'
 brew 'colordiff'
