@@ -85,8 +85,8 @@ install 'config.fish', '.config/fish/config.fish'
 
 # Keys
 unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
-  backup '~/.ssh/id_rsa' if file_exists '~/.ssh/id_rsa'
-  backup '~/.ssh/id_rsa.pub' if file_exists '~/.ssh/id_rsa.pub'
+  backup '~/.ssh/id_rsa'
+  backup '~/.ssh/id_rsa.pub'
   run 'ssh-keygen -t rsa -N ""'
 end
 
