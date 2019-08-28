@@ -209,8 +209,8 @@ alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
 alias vi 'vim'
-alias vil 'vi ~/.local; test -e ~/.local; and source ~/.local; true'
-alias viz 'vi ~/.zshrc; test -e ~/.zshrc; and source ~/.zshrc; true'
+alias vif 'vi ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
+alias vifl 'vi ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
 alias web 'python -m SimpleHTTPServer 8080'
 
