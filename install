@@ -92,7 +92,7 @@ end
 
 if mac
   # Configuration
-  # run "#{path_repo '.'}/.macos"
+  # run "#{path_repo '.'}/macos.sh"
   run "open #{path_repo '.'}/Solarized.terminal"
 
   # Xcode
