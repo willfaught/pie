@@ -321,3 +321,7 @@ end
 # Local
 
 test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish
+
+# Setup
+
+status --is-interactive; and source (rbenv init -|psub)
