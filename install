@@ -70,7 +70,7 @@ end
 run 'sudo -v'
 
 # Update
-run "git -C '#{path_repo '.'}' pull origin master"
+run "git -C '#{path_repo '.'}' pull origin master" if run 'which git'
 
 # Files
 install '.ackrc'
