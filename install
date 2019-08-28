@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rbconfig'
-
 class String
   def red; "\e[31m#{self}\e[0m" end
   def magenta; "\e[35m#{self}\e[0m" end
@@ -38,7 +36,7 @@ def install(from, to = nil)
 end
 
 def mac
-  RbConfig::CONFIG['host_os'].downcase.include?('darwin')
+  run 'uname' == 'Darwin'
 end
 
 def path_home(path)
