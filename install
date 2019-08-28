@@ -113,10 +113,10 @@ if mac
   run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
   run 'open /Applications/Docker.app'
   run 'open /Applications/Dropbox.app'
-end
 
-# Oh My Fish
-run 'curl -fsLS https://get.oh-my.fish | fish' if file_exists('/usr/local/bin/fish') && !dir_exists('~/.local/share/omf')
+  # Oh My Fish
+  run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists('~/.local/share/omf')
+end
 
 # Vim
 run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' if file_exists('/usr/local/bin/vim') && !dir_exists('~/.vim')
