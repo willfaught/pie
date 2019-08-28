@@ -81,10 +81,7 @@ install '.gitconfig'
 install '.gitignore'
 install '.hushlogin'
 install '.inputrc'
-install 'aliases.fish', '.config/fish/aliases.fish'
 install 'config.fish', '.config/fish/config.fish'
-install 'functions.fish', '.config/fish/functions.fish'
-install 'variables.fish', '.config/fish/variables.fish'
 
 # Keys
 unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
