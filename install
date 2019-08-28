@@ -101,6 +101,8 @@ if mac
     sleep 10 until run 'xcode-select -p'
   end
   run 'sudo xcodebuild -license accept'
+
+  # Xcode
   # TODO: Install /Applications/Xcode.app if missing
 
   # Homebrew
