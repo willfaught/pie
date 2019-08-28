@@ -95,7 +95,7 @@ if mac
   # run "#{path_repo '.'}/macos.sh"
   run "open #{path_repo '.'}/Solarized.terminal"
 
-  # Xcode
+  # Command line developer tools
   unless run 'xcode-select -p'
     run 'xcode-select --install'
     sleep 10 until run 'xcode-select -p'
