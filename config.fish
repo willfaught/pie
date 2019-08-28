@@ -209,11 +209,6 @@ alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
 alias vi 'vim'
-alias via 'vi ~/.aliases; test -e ~/.aliases; and source ~/.aliases; true'
-alias vic 'vi docker-compose.yml'
-alias vid 'vi Dockerfile'
-alias vie 'vi ~/.exports; test -e ~/.exports; and source ~/.exports; true'
-alias vif 'vi ~/.functions; test -e ~/.functions; and source ~/.functions; true'
 alias vil 'vi ~/.local; test -e ~/.local; and source ~/.local; true'
 alias viz 'vi ~/.zshrc; test -e ~/.zshrc; and source ~/.zshrc; true'
 
