@@ -165,7 +165,7 @@ else
     end
 
     # Oh My Fish
-    run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists('~/.local/share/omf')
+    run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
     run 'fish -c "omf install robbyrussell"' unless run_output('fish -c "omf list -t"').include? 'robbyrussell'
   end
 
