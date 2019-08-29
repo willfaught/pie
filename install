@@ -144,10 +144,9 @@ else
     end
     run 'sudo xcodebuild -license accept'
 
-    # Xcode
-    run 'mas install 497799835'
-
     # Homebrew
+    docker_exists = exists '/Applications/Docker.app'
+    dropbox_exists = exists '/Applications/Dropbox.app'
     install '.Brewfile'
     run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
     run 'brew bundle --global'
@@ -156,8 +155,14 @@ else
     run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
     run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
     run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
-    run 'open /Applications/Docker.app'
-    run 'open /Applications/Dropbox.app'
+    run 'open /Applications/Docker.app' unless docker_exists
+    run 'open /Applications/Dropbox.app' unless dropbox_exists
+
+    # Xcode
+    unless exists '/Applications/Xcode.app'
+      run 'mas install 497799835'
+      run 'open /Applications/Xcode.app'
+    end
 
     # Oh My Fish
     run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists('~/.local/share/omf')
