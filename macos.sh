@@ -128,7 +128,6 @@ defaults write com.apple.terminal StringEncodings -array 4 # Use only use UTF-8
 
 sudo systemsetup -setrestartfreeze on # Restart automatically if the computer freezes
 sudo systemsetup -setcomputersleep Off >/dev/null # Never go into computer sleep mode
-sudo systemsetup -settimezone 'America/Los_Angeles' >/dev/null # Set the timezone
 
 # Remove duplicates in the "Open With" menu
 
