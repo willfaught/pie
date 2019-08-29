@@ -135,6 +135,8 @@ else
   if run_output('uname').include? 'Darwin'
     # Configuration
     # run "#{path_repo '.'}/macos.sh"
+
+    # Terminal theme
     run "open #{path_repo '.'}/Solarized.terminal"
 
     # Command line developer tools
