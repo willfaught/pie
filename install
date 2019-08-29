@@ -156,7 +156,7 @@ else
     run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
     run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
     run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
-    run 'open /Applications/Docker.app' unless run 'docker info'
+    run 'open /Applications/Docker.app'
     run 'open /Applications/Dropbox.app'
 
     # Oh My Fish
