@@ -35,10 +35,6 @@ def install(from, to = nil)
   symlink (path_home to), (path_repo from)
 end
 
-def mac
-  run 'uname' == 'Darwin'
-end
-
 def path_home(path)
   File.expand_path File.join(Dir.home, path)
 end
@@ -88,7 +84,8 @@ unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
   run 'ssh-keygen -t rsa -N ""'
 end
 
-if mac
+# Mac
+if run 'uname' == 'Darwin'
   # Configuration
   # run "#{path_repo '.'}/macos.sh"
   run "open #{path_repo '.'}/Solarized.terminal"
