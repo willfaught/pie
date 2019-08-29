@@ -56,7 +56,7 @@ def symlink(from_path, to_path)
   return if File.symlink?(from_path) && File.readlink(from_path) == to_path
   backup from_path
   from_dir = File.dirname(from_path)
-  Dir.mkdir(from_dir) if !dir_exists(from_dir)
+  FileUtils.makedirs(from_dir) if !dir_exists(from_dir)
   run "ln -s '#{to_path}' '#{from_path}'"
 end
 
