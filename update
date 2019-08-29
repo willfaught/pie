@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# Repository
+run "git -C '#{path_repo '.'}' pull origin master"
+
+# Janus
+rake -f ~/.vim/Rakefile
+
+# Mac
+if run 'uname' == 'Darwin'
+    # Homebrew
+    brew update
+    brew upgrade
+    brew cleanup
+
+    # Oh My Fish
+    omf update
+end
