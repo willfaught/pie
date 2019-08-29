@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+
 class String
   def red; "\e[31m#{self}\e[0m" end
   def magenta; "\e[35m#{self}\e[0m" end
@@ -9,6 +11,13 @@ end
 def backup(path)
   path = File.expand_path path
   run "mv '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
+end
+
+def command(cmd)
+  puts cmd.magenta.bold
+  result = system cmd
+  puts 'failed'.red.bold unless result
+  result
 end
 
 def contains_line(path, regexp)
@@ -50,6 +59,17 @@ def run(cmd)
   result
 end
 
+def run_output(cmd)
+  puts cmd.magenta.bold
+  result = `#{cmd}`
+  puts result
+  unless $?.success?
+    puts 'failed'.red.bold unless result
+    return false
+  end
+  result
+end
+
 def symlink(from_path, to_path)
   from_path = File.expand_path from_path
   to_path = File.expand_path to_path
@@ -60,62 +80,90 @@ def symlink(from_path, to_path)
   run "ln -s '#{to_path}' '#{from_path}'"
 end
 
-# Authenticate
-run 'sudo -v'
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: install [options]"
 
-# Update
-run "git -C '#{path_repo '.'}' pull origin master" if run 'which git'
-
-# Files
-install '.ackrc'
-install '.curlrc'
-install '.editorconfig'
-install '.gbdinit'
-install '.gitconfig'
-install '.gitignore'
-install '.hushlogin'
-install '.inputrc'
-install 'config.fish', '.config/fish/config.fish'
-
-# Keys
-unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
-  backup '~/.ssh/id_rsa'
-  backup '~/.ssh/id_rsa.pub'
-  run 'ssh-keygen -t rsa -N ""'
-end
-
-# Mac
-if run 'uname' == 'Darwin'
-  # Configuration
-  # run "#{path_repo '.'}/macos.sh"
-  run "open #{path_repo '.'}/Solarized.terminal"
-
-  # Command line developer tools
-  unless run 'xcode-select -p'
-    run 'xcode-select --install'
-    sleep 10 until run 'xcode-select -p'
+  opts.on("-u", "--upgrade", "Upgrade software") do |v|
+    options[:upgrade] = v
   end
-  run 'sudo xcodebuild -license accept'
 
-  # Xcode
-  # TODO: Install /Applications/Xcode.app if missing
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+end.parse!
 
-  # Homebrew
-  install '.Brewfile'
-  run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
-  run 'brew bundle --global'
-  run 'brew cleanup'
-  run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
-  run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
-  run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
-  run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
-  run 'open /Applications/Docker.app'
-  run 'open /Applications/Dropbox.app'
+if options[:upgrade]
+  # Repository
+  run "git -C '#{path_repo '.'}' pull origin master"
 
-  # Oh My Fish
-  run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists('~/.local/share/omf')
-  run 'fish -c "omf install robbyrussell"'
+  # Janus
+  run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
+
+  # Mac
+  if run_output('uname').include? 'Darwin'
+    # Homebrew
+    run 'brew upgrade'
+    run 'brew cleanup'
+
+    # Oh My Fish
+    run 'fish -c "omf update"'
+  end
+else
+  # Authenticate
+  run 'sudo -v'
+
+  # Files
+  install '.ackrc'
+  install '.curlrc'
+  install '.editorconfig'
+  install '.gbdinit'
+  install '.gitconfig'
+  install '.gitignore'
+  install '.hushlogin'
+  install '.inputrc'
+  install 'config.fish', '.config/fish/config.fish'
+
+  # Keys
+  unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+    backup '~/.ssh/id_rsa'
+    backup '~/.ssh/id_rsa.pub'
+    run 'ssh-keygen -t rsa -N ""'
+  end
+
+  # Mac
+  if run_output('uname').include? 'Darwin'
+    # Configuration
+    # run "#{path_repo '.'}/macos.sh"
+    run "open #{path_repo '.'}/Solarized.terminal"
+
+    # Command line developer tools
+    unless run 'xcode-select -p'
+      run 'xcode-select --install'
+      sleep 10 until run 'xcode-select -p'
+    end
+    run 'sudo xcodebuild -license accept'
+
+    # Xcode
+    # TODO: Install /Applications/Xcode.app if missing
+
+    # Homebrew
+    install '.Brewfile'
+    run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
+    run 'brew bundle --global'
+    run 'brew cleanup'
+    run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+    run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+    run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
+    run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
+    run 'open /Applications/Docker.app' unless run 'docker info'
+    run 'open /Applications/Dropbox.app'
+
+    # Oh My Fish
+    run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists('~/.local/share/omf')
+    run 'fish -c "omf install robbyrussell"' unless run_output('fish -c "omf list -t"').include? 'robbyrussell'
+  end
+
+  # Vim
+  run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' if file_exists('/usr/local/bin/vim') && !dir_exists('~/.vim')
 end
-
-# Vim
-run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' if file_exists('/usr/local/bin/vim') && !dir_exists('~/.vim')
