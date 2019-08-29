@@ -145,7 +145,7 @@ else
     run 'sudo xcodebuild -license accept'
 
     # Xcode
-    # TODO: Install /Applications/Xcode.app if missing
+    run 'mas install 497799835'
 
     # Homebrew
     install '.Brewfile'
