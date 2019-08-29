@@ -137,7 +137,7 @@ else
     # run "#{path_repo '.'}/macos.sh"
 
     # Terminal theme
-    run "open #{path_repo '.'}/Solarized.terminal"
+    run "open #{path_repo '.'}/Solarized.terminal" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
 
     # Command line developer tools
     unless run 'xcode-select -p'
