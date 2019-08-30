@@ -130,8 +130,8 @@ if run_output('uname').include? 'Darwin'
   end
 
   # Homebrew
-  docker_exists = exists '/Applications/Docker.app'
-  dropbox_exists = exists '/Applications/Dropbox.app'
+  docker_existed = exists '/Applications/Docker.app'
+  dropbox_existed = exists '/Applications/Dropbox.app'
   install '.Brewfile'
   run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
   run 'brew bundle --global'
@@ -140,8 +140,8 @@ if run_output('uname').include? 'Darwin'
   run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
   run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
   run 'chsh -s /usr/local/bin/fish' if file_exists('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
-  run 'open /Applications/Docker.app' unless docker_exists
-  run 'open /Applications/Dropbox.app' unless dropbox_exists
+  run 'open /Applications/Docker.app' if dir_exists('/Applications/Docker.app') && !docker_existed
+  run 'open /Applications/Dropbox.app' if dir_exists('/Applications/Dropbox.app') && !dropbox_existed
 
   # Xcode
   unless exists '/Applications/Xcode.app'
