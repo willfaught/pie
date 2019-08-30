@@ -153,6 +153,10 @@ if run_output('uname').include? 'Darwin'
   # Oh My Fish
   run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
   run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
+
+  # Files
+  install 'config.fish', '.config/fish/config.fish'
+  install 'settings.json', 'Library/Application Support/Code/User/settings.json'
 end
 
 # Files
@@ -164,7 +168,6 @@ install '.gitconfig'
 install '.gitignore'
 install '.hushlogin'
 install '.inputrc'
-install 'config.fish', '.config/fish/config.fish'
 
 # Vim
 run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'

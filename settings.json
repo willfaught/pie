@@ -1,0 +1,15 @@
+{
+    "editor.codeLens": false,
+    "explorer.openEditors.visible": 0,
+    "go.enableCodeLens": {
+        "references": false,
+        "runtest": false
+    },
+    "go.editorContextMenuCommands": {
+        "testAtCursor": true,
+        "testFile": true,
+        "testPackage": true
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.folding": false
+}
