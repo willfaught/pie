@@ -139,7 +139,7 @@ if run_output('uname').include? 'Darwin'
   run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
   run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
   run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
-  run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
+  run 'chsh -s /usr/local/bin/fish' unless run_output('sh -c "echo $SHELL"').include? '/usr/local/bin/fish'
   run 'open /Applications/Docker.app' unless docker_exists
   run 'open /Applications/Dropbox.app' unless dropbox_exists
 
