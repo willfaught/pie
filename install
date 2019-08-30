@@ -130,8 +130,8 @@ if run_output('uname').include? 'Darwin'
   end
 
   # Homebrew
-  docker_existed = exists '/Applications/Docker.app'
-  dropbox_existed = exists '/Applications/Dropbox.app'
+  docker_existed = dir_exists '/Applications/Docker.app'
+  dropbox_existed = dir_exists '/Applications/Dropbox.app'
   install '.Brewfile'
   run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
   run 'brew bundle --global'
