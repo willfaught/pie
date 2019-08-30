@@ -83,11 +83,9 @@ end
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: install [options]"
-
   opts.on("-u", "--upgrade", "Upgrade software") do |v|
     options[:upgrade] = v
   end
-
   opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
     options[:verbose] = v
   end
