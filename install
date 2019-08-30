@@ -25,13 +25,6 @@ def backup(path)
   run "mv '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
 end
 
-def command(cmd)
-  puts cmd.magenta.bold
-  result = system cmd
-  puts 'failed'.red.bold unless result
-  result
-end
-
 def contains_line(path, regexp)
   File.foreach(File.expand_path path).grep(regexp).any?
 end
