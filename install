@@ -2,6 +2,18 @@
 
 require 'optparse'
 
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: install [options]"
+  opts.on("-u", "--upgrade", "Upgrade software") do |v|
+    options[:upgrade] = v
+  end
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
 class String
   def red; "\e[31m#{self}\e[0m" end
   def magenta; "\e[35m#{self}\e[0m" end
@@ -79,17 +91,6 @@ def symlink(from_path, to_path)
   FileUtils.makedirs(from_dir) if !dir_exists(from_dir)
   run "ln -s '#{to_path}' '#{from_path}'"
 end
-
-options = {}
-OptionParser.new do |opts|
-  opts.banner = "Usage: install [options]"
-  opts.on("-u", "--upgrade", "Upgrade software") do |v|
-    options[:upgrade] = v
-  end
-  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
-    options[:verbose] = v
-  end
-end.parse!
 
 if options[:upgrade]
   # Repository
