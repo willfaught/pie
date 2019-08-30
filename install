@@ -144,7 +144,6 @@ else
       run 'xcode-select --install'
       sleep 10 until run 'xcode-select -p'
     end
-    run 'sudo xcodebuild -license accept'
 
     # Homebrew
     docker_exists = exists '/Applications/Docker.app'
@@ -165,6 +164,7 @@ else
       run 'mas install 497799835'
       run 'open /Applications/Xcode.app'
     end
+    run 'sudo xcodebuild -license accept'
 
     # Oh My Fish
     run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
