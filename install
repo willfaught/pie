@@ -108,6 +108,13 @@ end
 # Authenticate
 run 'sudo -v'
 
+# Keys
+unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+  backup '~/.ssh/id_rsa'
+  backup '~/.ssh/id_rsa.pub'
+  run 'ssh-keygen -t rsa -N ""'
+end
+
 # Mac
 if run_output('uname').include? 'Darwin'
   # Configuration
@@ -158,13 +165,6 @@ install '.gitignore'
 install '.hushlogin'
 install '.inputrc'
 install 'config.fish', '.config/fish/config.fish'
-
-# Keys
-unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
-  backup '~/.ssh/id_rsa'
-  backup '~/.ssh/id_rsa.pub'
-  run 'ssh-keygen -t rsa -N ""'
-end
 
 # Vim
 run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
