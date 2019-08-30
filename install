@@ -107,68 +107,70 @@ if options[:upgrade]
     # Oh My Fish
     run 'fish -c "omf update"'
   end
-else
-  # Authenticate
-  run 'sudo -v'
 
-  # Mac
-  if run_output('uname').include? 'Darwin'
-    # Configuration
-    # run "#{path_repo '.'}/macos.sh"
-
-    # Terminal theme
-    run "open #{path_repo '.'}/Solarized.terminal" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
-
-    # Command line developer tools
-    unless run 'xcode-select -p'
-      run 'xcode-select --install'
-      sleep 10 until run 'xcode-select -p'
-    end
-
-    # Homebrew
-    docker_exists = exists '/Applications/Docker.app'
-    dropbox_exists = exists '/Applications/Dropbox.app'
-    install '.Brewfile'
-    run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
-    run 'brew bundle --global'
-    run 'brew cleanup'
-    run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
-    run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
-    run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
-    run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
-    run 'open /Applications/Docker.app' unless docker_exists
-    run 'open /Applications/Dropbox.app' unless dropbox_exists
-
-    # Xcode
-    unless exists '/Applications/Xcode.app'
-      run 'mas install 497799835'
-      run 'open /Applications/Xcode.app'
-    end
-    run 'sudo xcodebuild -license accept'
-
-    # Oh My Fish
-    run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
-    run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
-  end
-
-  # Files
-  install '.ackrc'
-  install '.curlrc'
-  install '.editorconfig'
-  install '.gbdinit'
-  install '.gitconfig'
-  install '.gitignore'
-  install '.hushlogin'
-  install '.inputrc'
-  install 'config.fish', '.config/fish/config.fish'
-
-  # Keys
-  unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
-    backup '~/.ssh/id_rsa'
-    backup '~/.ssh/id_rsa.pub'
-    run 'ssh-keygen -t rsa -N ""'
-  end
-
-  # Vim
-  run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
+  exit
 end
+
+# Authenticate
+run 'sudo -v'
+
+# Mac
+if run_output('uname').include? 'Darwin'
+  # Configuration
+  # run "#{path_repo '.'}/macos.sh"
+
+  # Terminal theme
+  run "open #{path_repo '.'}/Solarized.terminal" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
+
+  # Command line developer tools
+  unless run 'xcode-select -p'
+    run 'xcode-select --install'
+    sleep 10 until run 'xcode-select -p'
+  end
+
+  # Homebrew
+  docker_exists = exists '/Applications/Docker.app'
+  dropbox_exists = exists '/Applications/Dropbox.app'
+  install '.Brewfile'
+  run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
+  run 'brew bundle --global'
+  run 'brew cleanup'
+  run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+  run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+  run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
+  run 'chsh -s /usr/local/bin/fish' unless ENV['SHELL'] == '/usr/local/bin/fish'
+  run 'open /Applications/Docker.app' unless docker_exists
+  run 'open /Applications/Dropbox.app' unless dropbox_exists
+
+  # Xcode
+  unless exists '/Applications/Xcode.app'
+    run 'mas install 497799835'
+    run 'open /Applications/Xcode.app'
+  end
+  run 'sudo xcodebuild -license accept'
+
+  # Oh My Fish
+  run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
+  run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
+end
+
+# Files
+install '.ackrc'
+install '.curlrc'
+install '.editorconfig'
+install '.gbdinit'
+install '.gitconfig'
+install '.gitignore'
+install '.hushlogin'
+install '.inputrc'
+install 'config.fish', '.config/fish/config.fish'
+
+# Keys
+unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+  backup '~/.ssh/id_rsa'
+  backup '~/.ssh/id_rsa.pub'
+  run 'ssh-keygen -t rsa -N ""'
+end
+
+# Vim
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
