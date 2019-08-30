@@ -113,24 +113,6 @@ else
   # Authenticate
   run 'sudo -v'
 
-  # Files
-  install '.ackrc'
-  install '.curlrc'
-  install '.editorconfig'
-  install '.gbdinit'
-  install '.gitconfig'
-  install '.gitignore'
-  install '.hushlogin'
-  install '.inputrc'
-  install 'config.fish', '.config/fish/config.fish'
-
-  # Keys
-  unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
-    backup '~/.ssh/id_rsa'
-    backup '~/.ssh/id_rsa.pub'
-    run 'ssh-keygen -t rsa -N ""'
-  end
-
   # Mac
   if run_output('uname').include? 'Darwin'
     # Configuration
@@ -169,6 +151,24 @@ else
     # Oh My Fish
     run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
     run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
+  end
+
+  # Files
+  install '.ackrc'
+  install '.curlrc'
+  install '.editorconfig'
+  install '.gbdinit'
+  install '.gitconfig'
+  install '.gitignore'
+  install '.hushlogin'
+  install '.inputrc'
+  install 'config.fish', '.config/fish/config.fish'
+
+  # Keys
+  unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+    backup '~/.ssh/id_rsa'
+    backup '~/.ssh/id_rsa.pub'
+    run 'ssh-keygen -t rsa -N ""'
   end
 
   # Vim
