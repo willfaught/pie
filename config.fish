@@ -168,6 +168,8 @@ alias gotr 'go test -run'
 alias gotrv 'go test -v -run'
 alias gotv 'go test -v ./...'
 
+alias gore 'gore -autoimport'
+
 alias hi 'history'
 
 alias jo 'jobs'
