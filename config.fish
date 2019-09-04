@@ -310,6 +310,7 @@ function take-lines-last
 end
 
 function up
+  cd ..
   while test (pwd) != "/"; and test (basename (pwd)) != $argv[1]
     cd ..
   end
