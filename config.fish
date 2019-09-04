@@ -56,9 +56,8 @@ alias cd...... 'cd ../../../../..'
 
 alias cdd "cd $HOME/Developer"
 alias cddo "cd $HOME/.dotfiles"
-alias cdg "cd $HOME/Developer/go"
-alias cdgs "cd $HOME/Developer/go/src"
-alias cdgsw "cd $HOME/Developer/go/src/github.com/willfaught"
+alias cdg "cd $HOME/Developer/go/src"
+alias cdw "cd $HOME/Developer/go/src/github.com/willfaught"
 
 alias cl 'clear'
 
