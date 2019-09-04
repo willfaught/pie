@@ -3,6 +3,7 @@
 set -gx CLICOLOR '1'
 set -gx COMPLETION_WAITING_DOTS 'true'
 set -gx EDITOR 'vim'
+set -gx GO111MODULE auto
 set -gx GOPATH "$HOME/Developer/go"
 set -gx HISTCONTROL 'ignoreboth'
 set -gx HISTFILESIZE "$HISTSIZE"
