@@ -176,6 +176,8 @@ alias hi 'history'
 alias jo 'jobs'
 
 alias kc 'kubectl'
+alias kn 'kubens'
+alias kx 'kubectx'
 
 alias lsa 'ls -A'
 alias lsal 'ls -Ahl'
