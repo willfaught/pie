@@ -161,6 +161,9 @@ alias hi 'history'
 alias jo 'jobs'
 
 alias kc 'kubectl'
+alias kcd 'kubectl describe'
+alias kcg 'kubectl get'
+alias kcl 'kubectl logs'
 alias kn 'kubens'
 alias kx 'kubectx'
 
