@@ -212,7 +212,7 @@ alias web 'python -m SimpleHTTPServer 8080'
 # Functions
 
 function banner
-  toilet -w (tput cols) $argv
+  figlet -w (tput cols) $argv
 end
 
 function finish
