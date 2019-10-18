@@ -13,5 +13,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "editor.folding": false,
     "gitlens.currentLine.enabled": false,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "go.formatTool": "goimports"
 }
