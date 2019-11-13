@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
 require 'optparse'
 
 options = {}
@@ -120,7 +121,7 @@ run "osascript -e 'tell application \"System Preferences\" to quit'"
 # Homebrew
 run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
 run 'brew doctor'
-run "brew bundle --file '#{path_repo 'files/Brewfile'}'"
+run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
 run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
 run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
@@ -132,14 +133,14 @@ run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share
 run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
 
 # Files
-install 'files/.ackrc'
-install 'files/.curlrc'
-install 'files/.editorconfig'
-install 'files/.gbdinit'
-install 'files/.gitconfig'
-install 'files/.gitignore'
-install 'files/.hushlogin'
-install 'files/.inputrc'
+install 'files/.ackrc', '.ackrc'
+install 'files/.curlrc', '.curlrc'
+install 'files/.editorconfig', '.editorconfig'
+install 'files/.gbdinit', '.gbdinit'
+install 'files/.gitconfig', '.gitconfig'
+install 'files/.gitignore', '.gitignore'
+install 'files/.hushlogin', '.hushlogin'
+install 'files/.inputrc', '.inputrc'
 install 'files/config.fish', '.config/fish/config.fish'
 install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
 
