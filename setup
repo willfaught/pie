@@ -1,0 +1,150 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: setup [options]'
+  opts.on('-u', '--upgrade', 'Upgrade software') do |v|
+    options[:upgrade] = v
+  end
+  opts.on('-v', '--[no-]verbose', 'Run verbosely') do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
+class String
+  def red; "\e[31m#{self}\e[0m" end
+  def magenta; "\e[35m#{self}\e[0m" end
+  def bold; "\e[1m#{self}\e[22m" end
+end
+
+def backup(path)
+  path = File.expand_path path
+  run "mv '#{path}' '#{path}.backup.#{Time.now.getutc.to_i}'" if exists path
+end
+
+def contains_line(path, regexp)
+  File.foreach(File.expand_path path).grep(regexp).any?
+end
+
+def dir_exists(path)
+  path = File.expand_path path
+  Dir.exist?(path) || File.symlink?(path)
+end
+
+def exists(path)
+  path = File.expand_path path
+  Dir.exist?(path) || File.exist?(path) || File.symlink?(path)
+end
+
+def file_exists(path)
+  path = File.expand_path path
+  File.exist?(path) || File.symlink?(path)
+end
+
+def install(from, to = nil)
+  to = from if to == nil
+  symlink (path_home to), (path_repo from)
+end
+
+def path_home(path)
+  File.expand_path File.join(Dir.home, path)
+end
+
+def path_repo(path)
+  File.expand_path File.join(File.dirname(__FILE__), path)
+end
+
+def run(cmd)
+  puts cmd.magenta.bold
+  result = system cmd
+  puts 'failed'.red.bold unless result
+  result
+end
+
+def run_output(cmd)
+  puts cmd.magenta.bold
+  result = `#{cmd}`
+  puts result
+  unless $?.success?
+    puts 'failed'.red.bold unless result
+    return false
+  end
+  result
+end
+
+def symlink(from_path, to_path)
+  from_path = File.expand_path from_path
+  to_path = File.expand_path to_path
+  return if File.symlink?(from_path) && File.readlink(from_path) == to_path
+  backup from_path
+  from_dir = File.dirname(from_path)
+  FileUtils.makedirs(from_dir) if !dir_exists(from_dir)
+  run "ln -s '#{to_path}' '#{from_path}'"
+end
+
+unless run_output('uname').include? 'Darwin'
+  puts 'error: computer is not a mac'
+  exit 1
+end
+
+# Upgrade
+if options[:upgrade]
+  run "git -C '#{path_repo '.'}' pull origin master"
+  run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
+  run 'brew upgrade'
+  run 'brew cleanup'
+  run 'fish -c "omf update"'
+  exit
+end
+
+# Authenticate
+run 'sudo -v'
+
+# Keys
+unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+  backup '~/.ssh/id_rsa'
+  backup '~/.ssh/id_rsa.pub'
+  run 'ssh-keygen -t rsa -N ""'
+end
+
+# Configuration
+run "osascript -e 'tell application \"System Preferences\" to quit'"
+# run "#{path_repo '.'}/scripts/defaults.sh"
+# run "#{path_repo '.'}/scripts/lsregister.sh"
+# run "#{path_repo '.'}/scripts/plistbuddy.sh"
+# run "#{path_repo '.'}/scripts/systemsetup.sh"
+
+# Homebrew
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install | ruby"' unless file_exists '/usr/local/bin/brew'
+run 'brew doctor'
+run "brew bundle --file '#{path_repo 'files/Brewfile'}'"
+run 'brew cleanup'
+run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
+run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
+run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
+run 'chsh -s /usr/local/bin/fish' if file_exists('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
+
+# Oh My Fish
+run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
+run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
+
+# Files
+install 'files/.ackrc'
+install 'files/.curlrc'
+install 'files/.editorconfig'
+install 'files/.gbdinit'
+install 'files/.gitconfig'
+install 'files/.gitignore'
+install 'files/.hushlogin'
+install 'files/.inputrc'
+install 'files/config.fish', '.config/fish/config.fish'
+install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
+
+# Vim
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
+
+# Terminal
+run "open '#{path_repo 'files/solarized.terminal'}'" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'

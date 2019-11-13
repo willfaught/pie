@@ -2,18 +2,6 @@
 
 set -x
 
-osascript -e 'tell application "System Preferences" to quit'
-sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-# PlistBuddy
-
-/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:arrangeBy grid' ~/Library/Preferences/com.apple.finder.plist # Enable snap-to-grid for icons
-/usr/libexec/PlistBuddy -c 'Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid' ~/Library/Preferences/com.apple.finder.plist # Enable snap-to-grid for icons
-/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:arrangeBy grid' ~/Library/Preferences/com.apple.finder.plist # Enable snap-to-grid for icons
-
-# defaults
-
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3 # Enable full keyboard access for all controls
 defaults write NSGlobalDomain AppleLanguages -array en # Set the language
 defaults write NSGlobalDomain AppleLocale -string 'en_US@currency=USD' # Set the locale
@@ -123,12 +111,3 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool true #
 defaults write com.apple.terminal SecureKeyboardEntry -bool true # Enable Secure Keyboard Entry
 defaults write com.apple.terminal ShowLineMarks -int 0 # Disable line marks
 defaults write com.apple.terminal StringEncodings -array 4 # Use only use UTF-8
-
-# systemsetup
-
-sudo systemsetup -setrestartfreeze on # Restart automatically if the computer freezes
-sudo systemsetup -setcomputersleep Off >/dev/null # Never go into computer sleep mode
-
-# Remove duplicates in the "Open With" menu
-
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
