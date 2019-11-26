@@ -168,6 +168,7 @@ alias kc 'kubectl'
 alias kcd 'kubectl describe'
 alias kcg 'kubectl get'
 alias kcl 'kubectl logs'
+alias kcr 'kubectl run'
 alias kn 'kubens'
 alias kx 'kubectx'
 
@@ -233,6 +234,10 @@ end
 
 function drop-lines-last
   awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}"
+end
+
+function kcrp
+  kubectl run -i -t --image $argv[1] --restart Never --rm $argv[2]
 end
 
 function notify
