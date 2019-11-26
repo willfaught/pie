@@ -220,20 +220,20 @@ function banner
   figlet -w (tput cols) $argv
 end
 
-function finish
-  eval $argv; and finished $argv
-end
-
-function gibdrb
-  git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
-end
-
 function drop-lines
   awk "{l[NR] = \$0} END {for (i=1+$1; i<=NR; i++) print l[i]}"
 end
 
 function drop-lines-last
   awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}"
+end
+
+function finish
+  eval $argv; and finished $argv
+end
+
+function gibdrb
+  git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
 end
 
 function kcrp
