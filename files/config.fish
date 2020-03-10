@@ -295,10 +295,6 @@ function notify-warning
   notify 'Warning' "$1" "Basso.aiff" $argv[2..-1]
 end
 
-function page
-  $argv ^&1 | less -F
-end
-
 function port
   lsof -ni ":$1" | grep LISTEN
 end
