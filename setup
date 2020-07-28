@@ -130,7 +130,7 @@ run 'chsh -s /usr/local/bin/fish' if file_exists('/usr/local/bin/fish') && !run_
 
 # Fisher
 run 'curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish' unless file_exists '~/.config/fish/functions/fisher.fish'
-run 'fisher add rafaelrinaldi/pure'
+run 'fish -c "fisher add rafaelrinaldi/pure"'
 
 # Files
 install 'files/.ackrc', '.ackrc'
