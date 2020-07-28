@@ -119,7 +119,7 @@ run "#{path_repo '.'}/scripts/pmset.sh"
 run "#{path_repo '.'}/scripts/systemsetup.sh"
 
 # Homebrew
-run 'sh -c "curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless file_exists '/usr/local/bin/brew'
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless file_exists '/usr/local/bin/brew'
 run 'brew doctor'
 run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
