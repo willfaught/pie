@@ -2,6 +2,10 @@
 
 My Unix dotfiles.
 
+To install, run: `xcode-select --install && git clone https://github.com/willfaught/dotfiles ~/.dotfiles && ~/.dotfiles/setup`.
+
+To update, run: `~/.dotfiles/setup -u`.
+
 Installation does any of the following if needed:
 
 - Adds /usr/local/bin/bash and /usr/local/bin/fish to /etc/shells
@@ -15,7 +19,3 @@ Installation does any of the following if needed:
 - Installs Xcode
 - Makes an SSH key with no password
 - Symlinks the dotfiles into the home directory
-
-To install, run: `git clone https://github.com/willfaught/dotfiles ~/.dotfiles && ~/.dotfiles/install`.
-
-To update, run: `~/.dotfiles/install -u`.
