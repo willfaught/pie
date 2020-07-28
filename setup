@@ -97,7 +97,7 @@ if options[:upgrade]
   run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
   run 'brew upgrade'
   run 'brew cleanup'
-  run 'fish -c "omf update"'
+  run 'fish -c "fisher self-update"'
   exit
 end
 
@@ -128,9 +128,9 @@ run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless conta
 run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
 run 'chsh -s /usr/local/bin/fish' if file_exists('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
 
-# Oh My Fish
-run 'curl -fsLS https://get.oh-my.fish | fish' unless dir_exists '~/.local/share/omf'
-run 'fish -c "omf install robbyrussell"' unless dir_exists '~/.local/share/omf/themes/robbyrussell'
+# Fisher
+run 'curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish' unless file_exists '~/.config/fish/functions/fisher.fish'
+run 'fisher add rafaelrinaldi/pure'
 
 # Files
 install 'files/.ackrc', '.ackrc'
