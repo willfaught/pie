@@ -115,7 +115,6 @@ end
 run "osascript -e 'tell application \"System Preferences\" to quit'"
 run "#{path_repo '.'}/scripts/defaults.sh"
 run "#{path_repo '.'}/scripts/lsregister.sh"
-run "#{path_repo '.'}/scripts/pmset.sh"
 run "#{path_repo '.'}/scripts/systemsetup.sh"
 
 # Homebrew
