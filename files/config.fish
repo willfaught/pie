@@ -216,10 +216,6 @@ alias web 'python -m SimpleHTTPServer 8080'
 
 # Functions
 
-function banner
-  figlet -w (tput cols) $argv
-end
-
 function drop-lines
   awk "{l[NR] = \$0} END {for (i=1+$1; i<=NR; i++) print l[i]}"
 end
@@ -228,71 +224,12 @@ function drop-lines-last
   awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}"
 end
 
-function finish
-  eval $argv; and finished $argv
-end
-
 function gibdrb
   git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
 end
 
 function kcrp
   kubectl run -i -t --image $argv[1] --restart Never --rm $argv[2]
-end
-
-function notify
-  set command
-  if test -n $argv[1]
-    set command "$command with title $argv[1]"
-  end
-  if test -n $argv[2]
-    set command "$command subtitle $argv[2]"
-  end
-  if test -n $argv[3]
-    set command "$command sound name $argv[3]"
-  end
-  set command "display notification \"$argv[4..-1]\"$command"
-  osascript -e $command
-end
-
-function notify-alert
-  notify 'Alert' "$1" 'Ping.aiff' $argv[2..-1]
-end
-
-function notify-beginning
-  note 'Beginning' $argv
-end
-
-function notify-ending
-  note 'Ending' $argv
-end
-
-function notify-failed
-  warning 'Failed' $argv
-end
-
-function notify-finished
-  alert 'Finished' $argv
-end
-
-function notify-note
-  notify 'Note' "$1" 'Pop.aiff' $argv[2..-1]
-end
-
-function notify-starting
-  note 'Starting' $argv
-end
-
-function notify-stopping
-  note 'Stopping' $argv
-end
-
-function notify-succeeded
-  alert 'Succeeded' $argv
-end
-
-function notify-warning
-  notify 'Warning' "$1" "Basso.aiff" $argv[2..-1]
 end
 
 function port
