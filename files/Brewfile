@@ -1,4 +1,3 @@
-brew 'ack'
 brew 'bash'
 brew 'colordiff'
 brew 'coreutils'
