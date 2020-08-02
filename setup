@@ -1,24 +1,26 @@
 #!/usr/bin/env ruby
 
 require 'fileutils'
+require 'open3'
 require 'optparse'
-
-options = {}
 
 OptionParser.new do |opts|
   opts.banner = 'Usage: setup [options]'
-  opts.on('-u', '--upgrade', 'Upgrade software') do |v|
-    options[:upgrade] = v
+  opts.on('-u', '--upgrade', 'Upgrade instead of install') do |v|
+    $upgrade = v
   end
-  opts.on('-v', '--[no-]verbose', 'Run verbosely') do |v|
-    options[:verbose] = v
+  opts.on('-v', '--[no-]verbose', 'Verbose output') do |v|
+    $verbose = v
   end
 end.parse!
 
+$failed = false
+
 class String
-  def red; "\e[31m#{self}\e[0m" end
-  def magenta; "\e[35m#{self}\e[0m" end
   def bold; "\e[1m#{self}\e[22m" end
+  def green; "\e[1;32m#{self}\e[0m" end
+  def red; "\e[1;31m#{self}\e[0m" end
+  def yellow; "\e[1;33m#{self}\e[0m" end
 end
 
 def backup(path)
@@ -30,19 +32,43 @@ def contains_line(path, regexp)
   File.foreach(File.expand_path path).grep(regexp).any?
 end
 
-def dir_exists(path)
-  path = File.expand_path path
-  Dir.exist?(path) || File.symlink?(path)
-end
-
 def exists(path)
   path = File.expand_path path
-  Dir.exist?(path) || File.exist?(path) || File.symlink?(path)
+  result = Dir.exist?(path) || File.exist?(path) || File.symlink?(path)
+  if $verbose
+    if result
+      report "#{path} exists"
+    else
+      report "#{path} does not exist"
+    end
+  end
+  return result
 end
 
-def file_exists(path)
+def exists_dir(path)
   path = File.expand_path path
-  File.exist?(path) || File.symlink?(path)
+  result = Dir.exist?(path) || File.symlink?(path)
+  if $verbose
+    if result
+      report "#{path} exists"
+    else
+      report "#{path} does not exist"
+    end
+  end
+  return result
+end
+
+def exists_file(path)
+  path = File.expand_path path
+  result = File.exist?(path) || File.symlink?(path)
+  if $verbose
+    if result
+      report "#{path} exists"
+    else
+      report "#{path} does not exist"
+    end
+  end
+  return result
 end
 
 def install(from, to = nil)
@@ -58,22 +84,55 @@ def path_repo(path)
   File.expand_path File.join(File.dirname(__FILE__), path)
 end
 
-def run(cmd)
-  puts cmd.magenta.bold
-  result = system cmd
-  puts 'failed'.red.bold unless result
-  result
+def report(message)
+  puts message
 end
 
-def run_output(cmd)
-  puts cmd.magenta.bold
-  result = `#{cmd}`
-  puts result
-  unless $?.success?
-    puts 'failed'.red.bold unless result
-    return false
+def report_bad(message)
+  report message.red.bold
+end
+
+def report_good(message)
+  report message.green.bold
+end
+
+def report_step(message)
+  report message.yellow.bold
+end
+
+def run(command)
+  success, output = run_general(command)
+  unless success
+    report_bad "Failed: #{command}"
+    report output unless output.empty?
   end
-  result
+  $failed = !success unless $failed
+end
+
+def run_general(command)
+  stdout, stderr, status = Open3.capture3(command)
+  if stdout.empty?
+    output = stderr
+  elsif stderr.empty?
+    output = stdout
+  else
+    output = stdout + "\n" + stderr
+  end
+  return status.success?, output
+end
+
+def run_output(command)
+  success, output = run_general(command)
+  if $verbose
+    if success
+      report "Succeeded: #{command}"
+    else
+      report "Failed: #{command}"
+    end
+    report output unless output.empty?
+  end
+  $failed = !success unless $failed
+  return output
 end
 
 def symlink(from_path, to_path)
@@ -82,24 +141,37 @@ def symlink(from_path, to_path)
   return if File.symlink?(from_path) && File.readlink(from_path) == to_path
   backup from_path
   from_dir = File.dirname(from_path)
-  FileUtils.makedirs(from_dir) if !dir_exists(from_dir)
+  FileUtils.makedirs(from_dir) if !exists_dir(from_dir)
   run "ln -s '#{to_path}' '#{from_path}'"
 end
 
 unless run_output('uname').include? 'Darwin'
-  puts 'error: computer is not a mac'
+  report_error 'Error: Computer is not a Mac'
   exit 1
 end
 
 # Upgrade
-if options[:upgrade]
+if $upgrade
+  report_step 'Pulling the latest changes'
   run "git -C '#{path_repo '.'}' pull origin master"
-  run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
+  report_step 'Upgrading Fisher'
+  run 'fish -c "fisher self-update"'
+  run 'fish -c "fisher"'
+  report_step 'Upgrading Homebrew'
   run 'brew upgrade'
   run 'brew cask upgrade'
   run 'brew cleanup'
-  run 'fish -c "fisher self-update"'
-  run 'fish -c "fisher"'
+  report_step 'Upgrading Janus'
+  run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
+
+  if $failed
+    report_bad 'Failed'
+    exit 1
+  else
+    report_good 'Succeeded'
+    exit 0
+  end
+
   exit
 end
 
@@ -107,34 +179,38 @@ end
 run 'sudo -v'
 
 # Keys
-unless file_exists('~/.ssh/id_rsa') && file_exists('~/.ssh/id_rsa.pub')
+unless exists_file('~/.ssh/id_rsa') && exists_file('~/.ssh/id_rsa.pub')
+  report_step 'Generating new keys'
   backup '~/.ssh/id_rsa'
   backup '~/.ssh/id_rsa.pub'
   run 'ssh-keygen -t rsa -N ""'
 end
 
 # Configuration
+report_step 'Configuring the system'
 run "osascript -e 'tell application \"System Preferences\" to quit'"
 run "#{path_repo '.'}/scripts/defaults.sh"
 run "#{path_repo '.'}/scripts/lsregister.sh"
 run "#{path_repo '.'}/scripts/systemsetup.sh"
 
 # Homebrew
-run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless file_exists '/usr/local/bin/brew'
-run 'brew doctor'
+report_step 'Installing Homebrew'
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
 run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
+run 'brew doctor'
 run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
 run 'echo /usr/local/bin/bash | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/bash/
 run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
-run 'chsh -s /usr/local/bin/fish' if file_exists('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
+run 'chsh -s /usr/local/bin/fish' if exists_file('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
 
 # Fisher
-run 'curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish' unless file_exists '~/.config/fish/functions/fisher.fish'
+report_step 'Installing Fisher'
+run 'curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish' unless exists_file '~/.config/fish/functions/fisher.fish'
 run 'fish -c "fisher add rafaelrinaldi/pure"'
 
 # Files
-install 'files/.ackrc', '.ackrc'
+report_step 'Installing files'
 install 'files/.curlrc', '.curlrc'
 install 'files/.editorconfig', '.editorconfig'
 install 'files/.gbdinit', '.gbdinit'
@@ -145,8 +221,18 @@ install 'files/.inputrc', '.inputrc'
 install 'files/config.fish', '.config/fish/config.fish'
 install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
 
-# Vim
-run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless dir_exists '~/.vim'
+# Janus
+report_step 'Installing Janus'
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
 
 # Terminal
+report_step 'Installing Solarized'
 run "open '#{path_repo 'files/solarized.terminal'}'" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
+
+if $failed
+  report_bad 'Failed'
+  exit 1
+else
+  report_good 'Succeeded'
+  exit 0
+end
