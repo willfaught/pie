@@ -198,6 +198,8 @@ alias mkdir 'mkdir -p'
 
 alias mv 'mv -i'
 
+alias nv 'nvim'
+
 alias prfilescommand 'sudo lsof -c'
 alias prfilesestablished 'lsof -P -i4 | grep ESTABLISHED'
 alias prfileslisten 'lsof -P -i4 | grep LISTEN'
