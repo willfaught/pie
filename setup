@@ -96,8 +96,10 @@ if options[:upgrade]
   run "git -C '#{path_repo '.'}' pull origin master"
   run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
   run 'brew upgrade'
+  run 'brew cask upgrade'
   run 'brew cleanup'
   run 'fish -c "fisher self-update"'
+  run 'fish -c "fisher"'
   exit
 end
 
