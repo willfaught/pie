@@ -205,6 +205,7 @@ alias prfilespid 'sudo lsof -p'
 alias prpath "string replace -a ':' '\n' $PATH"
 alias prpidsdir 'sudo lsof +d'
 
+alias rgi 'rg -i'
 alias rgni 'rg --no-ignore'
 
 alias up1 'cd ..'
