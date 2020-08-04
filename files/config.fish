@@ -252,6 +252,14 @@ function take-lines-last
   awk "{l[NR] = \$0} END {for (i=NR-$1+1; i<=NR; i++) print l[i]}"
 end
 
+function temp-cpu
+  sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'CPU die temperature' | cut -d ' ' -f 4,5
+end
+
+function temp-gpu
+  sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
+end
+
 function up
   cd ..
   while test (pwd) != "/"; and test (basename (pwd)) != $argv[1]
