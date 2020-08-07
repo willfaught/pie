@@ -171,8 +171,6 @@ if $upgrade
     report_good 'Succeeded'
     exit 0
   end
-
-  exit
 end
 
 # Authenticate
