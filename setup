@@ -101,12 +101,8 @@ def report_step(message)
 end
 
 def run(command)
-  success, output = run_general(command)
-  unless success
-    report_bad "Failed: #{command}"
-    report output unless output.empty?
-  end
-  $failed = !success unless $failed
+  success, output = run_report(command)
+  return success
 end
 
 def run_general(command)
@@ -121,17 +117,23 @@ def run_general(command)
   return status.success?, output
 end
 
-def run_output(command)
+def run_report(command)
   success, output = run_general(command)
-  if $verbose
-    if success
-      report "Succeeded: #{command}"
-    else
-      report "Failed: #{command}"
+  if success
+    if $verbose
+      report_good "Succeeded: #{command}"
+      report output unless output.empty?
     end
+  else
+    report_bad "Failed: #{command}"
     report output unless output.empty?
   end
   $failed = !success unless $failed
+  return success, output
+end
+
+def run_output(command)
+  success, output = run_report(command)
   return output
 end
 
