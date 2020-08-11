@@ -51,5 +51,7 @@ defaults -currentHost write com.apple.finder ShowExternalHardDrivesOnDesktop -bo
 defaults -currentHost write com.apple.finder ShowRemovableMediaOnDesktop -bool false # Hide removable media on the desktop
 defaults -currentHost write com.apple.finder ShowStatusBar -bool true # Show the status bar
 
+defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.saver'
+
 killall Dock
 killall Finder
