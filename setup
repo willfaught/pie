@@ -227,7 +227,7 @@ run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir
 
 # Terminal
 report_step 'Installing Solarized'
-run "open '#{path_repo 'files/Solarized.terminal'}'" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
+run "open '#{path_repo 'files/Solarized.terminal'}'" unless run_output('defaults -currentHost read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
 
 if $failed
   report_bad 'Failed'
