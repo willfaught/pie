@@ -28,6 +28,8 @@ defaults -currentHost write com.apple.Safari WebKitTabToLinksPreferenceKey -bool
 defaults -currentHost write com.apple.AppleMultitouchTrackpad Clicking -bool true # System Preferences -> Trackpad -> Point & Click -> Tap to click
 
 defaults -currentHost write com.apple.Terminal ShowLineMarks -bool false # Hide line marks
+defaults write com.apple.Terminal 'Default Window Settings' -string 'Solarized' # Default profile
+defaults write com.apple.Terminal 'Startup Window Settings' -string 'Solarized' # Default profile
 
 defaults -currentHost write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true # System Preferences -> Trackpad -> Point & Click -> Tap to click
 
