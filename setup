@@ -183,7 +183,7 @@ unless exists_file('~/.ssh/id_rsa') && exists_file('~/.ssh/id_rsa.pub')
   report_step 'Generating new keys'
   backup '~/.ssh/id_rsa'
   backup '~/.ssh/id_rsa.pub'
-  run 'ssh-keygen -t rsa -N ""'
+  run "ssh-keygen -N '' -f '#{Dir.home}/.ssh/id_rsa' -q"
 end
 
 # Configuration
