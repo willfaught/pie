@@ -2,7 +2,6 @@
 
 set -x
 
-sudo systemsetup -setallowpowerbuttontosleepcomputer on
 sudo systemsetup -setcomputersleep Never
 sudo systemsetup -setdisablekeyboardwhenenclosurelockisengaged no
 sudo systemsetup -setdisplaysleep 60
