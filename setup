@@ -222,6 +222,10 @@ install 'files/.inputrc', '.inputrc'
 install 'files/config.fish', '.config/fish/config.fish'
 install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
 
+# Directories
+dev = File.join(Dir.home, 'Developer')
+Dir.mkdir(dev) unless exists_dir dev
+
 # Janus
 report_step 'Installing Janus'
 run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
