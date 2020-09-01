@@ -11,5 +11,4 @@ sudo systemsetup -setnetworktimeserver time.apple.com
 sudo systemsetup -setrestartfreeze on
 sudo systemsetup -settimezone 'America/Los_Angeles'
 sudo systemsetup -setusingnetworktime on
-sudo systemsetup -setwaitforstartupafterpowerfailure 0
 sudo systemsetup -setwakeonnetworkaccess on
