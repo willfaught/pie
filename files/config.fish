@@ -76,6 +76,9 @@ alias dr 'docker'
 alias drc 'docker-compose'
 alias drm 'docker-machine'
 
+alias edf 'vi ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
+alias edfl 'vi ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
+
 alias gia 'git add'
 alias gib 'git branch'
 alias gibd 'git branch -d'
@@ -212,8 +215,6 @@ alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
 alias vi 'vim'
-alias vif 'vi ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
-alias vifl 'vi ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
 alias web 'python -m SimpleHTTPServer 8080'
 
