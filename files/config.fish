@@ -37,7 +37,6 @@ alias brup 'brew upgrade'
 alias brupc 'brew upgrade; and brew cleanup'
 
 alias brk 'brew cask'
-alias brkc 'brew cask cleanup'
 alias brkd 'brew cask doctor'
 alias brki 'brew cask install'
 alias brkl 'brew cask list'
