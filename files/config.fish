@@ -24,10 +24,6 @@ alias .... 'cd ../../..'
 alias ..... 'cd ../../../..'
 alias ...... 'cd ../../../../..'
 
-alias akg 'ack --go --ignore-dir pb --ignore-dir vendor'
-alias akj 'ack --ignore-dir migrations --ignore-dir node_modules --js'
-alias akr 'ack --ignore-dir coverage --ignore-dir log --ignore-dir vendor --ruby'
-
 alias br 'brew'
 alias brc 'brew cleanup'
 alias brd 'brew doctor'
