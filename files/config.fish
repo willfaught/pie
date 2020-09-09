@@ -237,7 +237,7 @@ function kcrp
 end
 
 function port
-  lsof -ni ":$1" | grep LISTEN
+  lsof -Pn -iTCP:$argv[1]
 end
 
 function take-lines
