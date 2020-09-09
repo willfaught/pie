@@ -76,8 +76,8 @@ alias dr 'docker'
 alias drc 'docker-compose'
 alias drm 'docker-machine'
 
-alias edf 'vi ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
-alias edfl 'vi ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
+alias edf 'nvim ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
+alias edfl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
 alias gia 'git add'
 alias gib 'git branch'
