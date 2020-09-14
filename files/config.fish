@@ -42,7 +42,6 @@ alias brki 'brew cask install'
 alias brkl 'brew cask list'
 alias brkn 'brew cask info'
 alias brkr 'brew cask reinstall'
-alias brks 'brew cask search'
 alias brku 'brew cask uninstall'
 alias brkup 'brew cask upgrade'
 
