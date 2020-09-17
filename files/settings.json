@@ -12,7 +12,14 @@
     },
     "workbench.startupEditor": "newUntitledFile",
     "editor.folding": false,
-    "gitlens.currentLine.enabled": false,
     "git.autofetch": true,
-    "go.formatTool": "goimports"
+    "go.formatTool": "goimports",
+    "ruby.codeCompletion": "rcodetools",
+    "ruby.format": "rubocop",
+    "ruby.intellisense": "rubyLocate",
+    "ruby.useLanguageServer": true,
+    "ruby.lint": {},
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false
 }
