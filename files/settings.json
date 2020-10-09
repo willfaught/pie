@@ -18,7 +18,11 @@
     "ruby.format": "rubocop",
     "ruby.intellisense": "rubyLocate",
     "ruby.useLanguageServer": true,
-    "ruby.lint": {},
+    "ruby.lint": {
+        "rubocop": {
+            "useBundler": true
+        }
+    },
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false
