@@ -47,6 +47,12 @@ alias brkup 'brew cask upgrade'
 
 alias brxupc 'brew upgrade; and brew cask upgrade; and brew cleanup'
 
+alias bu 'bundle'
+alias bue 'bundle exec'
+alias buer 'bundle exec rails'
+alias buerc 'bundle exec rails console'
+alias bues 'bundle exec rspec'
+
 alias cd.. 'cd ..'
 alias cd... 'cd ../..'
 alias cd.... 'cd ../../..'
