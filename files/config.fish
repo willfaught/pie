@@ -52,6 +52,7 @@ alias bue 'bundle exec'
 alias buer 'bundle exec rails'
 alias buerc 'bundle exec rails console'
 alias bues 'bundle exec rspec'
+alias bui 'bundle install'
 
 alias cd.. 'cd ..'
 alias cd... 'cd ../..'
