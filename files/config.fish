@@ -1,6 +1,5 @@
 # Variables
 
-set -gx COMPLETION_WAITING_DOTS 'true'
 set -gx EDITOR 'nvim'
 set -gx GO111MODULE 'auto'
 set -gx GOPATH "$HOME/Developer/go"
