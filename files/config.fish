@@ -3,8 +3,6 @@
 set -gx EDITOR 'nvim'
 set -gx GO111MODULE 'auto'
 set -gx GOPATH "$HOME/Developer/go"
-set -gx LANG 'en_US.UTF-8'
-set -gx LC_ALL 'en_US.UTF-8'
 set -gx PATH $PATH $GOPATH/bin
 set -gx fish_greeting
 
