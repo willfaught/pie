@@ -44,10 +44,6 @@ alias dat 'date +"%T"'
 
 alias diff 'colordiff'
 
-alias dsflush 'dscacheutil -flushcache'
-
-alias dnsrestart 'sudo killall -HUP mDNSResponder'
-
 alias dr 'docker'
 alias drc 'docker-compose'
 alias drm 'docker-machine'
@@ -159,8 +155,6 @@ alias lsal 'ls -Ahl'
 alias lsl 'ls -hl'
 
 alias ln 'ln -i'
-
-alias lscleanup "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user; and killall Finder"
 
 alias macappinfo 'codesign -dvv'
 alias macappstartup 'lsal /Library/LaunchAgents /Library/LaunchDaemons /Library/StartupItems'
