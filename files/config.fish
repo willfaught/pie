@@ -7,7 +7,6 @@ set -gx GOPATH "$HOME/Developer/go"
 set -gx LANG 'en_US.UTF-8'
 set -gx LC_ALL 'en_US.UTF-8'
 set -gx PATH $PATH $GOPATH/bin
-set -gx PYTHONIOENCODING 'UTF-8'
 set -gx fish_greeting
 
 # Aliases
