@@ -161,7 +161,6 @@ if $upgrade
   run 'fish -c "fisher"'
   report_step 'Upgrading Homebrew'
   run 'brew upgrade'
-  run 'brew cask upgrade'
   run 'brew cleanup'
   report_step 'Upgrading Janus'
   run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
