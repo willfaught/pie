@@ -157,8 +157,7 @@ if $upgrade
   report_step 'Pulling the latest changes'
   run "git -C '#{path_repo '.'}' pull origin master"
   report_step 'Upgrading Fisher'
-  run 'fish -c "fisher self-update"'
-  run 'fish -c "fisher"'
+  run 'fish -c "fisher update"'
   report_step 'Upgrading Homebrew'
   run 'brew upgrade'
   run 'brew cleanup'
@@ -206,8 +205,8 @@ run 'brew doctor'
 
 # Fisher
 report_step 'Installing Fisher'
-run 'curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish' unless exists_file '~/.config/fish/functions/fisher.fish'
-run 'fish -c "fisher add rafaelrinaldi/pure"'
+run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
+run 'fish -c "fisher install pure-fish/pure"'
 
 # Files
 report_step 'Installing files'
