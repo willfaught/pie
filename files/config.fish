@@ -6,8 +6,8 @@ set -gx EDITOR 'nvim'
 set -gx GO111MODULE 'auto'
 set -gx GOPATH "$HOME/Developer/go"
 set -gx HISTCONTROL 'ignoreboth'
-set -gx HISTFILESIZE "32768"
-set -gx HISTIGNORE "&:bg:clear:exit:fg:history:jobs:pwd:* --help:* --version"
+set -gx HISTFILESIZE '32768'
+set -gx HISTIGNORE '&:bg:clear:exit:fg:history:jobs:pwd:* --help:* --version'
 set -gx HISTSIZE '32768'
 set -gx LANG 'en_US.UTF-8'
 set -gx LC_ALL 'en_US.UTF-8'
