@@ -1,7 +1,6 @@
 # Variables
 
 set -gx EDITOR 'nvim'
-set -gx GO111MODULE 'auto'
 set -gx GOPATH "$HOME/Developer/go"
 set -gx PATH $PATH $GOPATH/bin
 set -gx fish_greeting
