@@ -25,5 +25,6 @@
     },
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false
+    "gitlens.codeLens.enabled": false,
+    "go.toolsManagement.autoUpdate": true
 }
