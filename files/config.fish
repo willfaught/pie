@@ -36,17 +36,6 @@ alias bru 'brew uninstall'
 alias brup 'brew upgrade'
 alias brupc 'brew upgrade; and brew cleanup'
 
-alias brk 'brew cask'
-alias brkd 'brew cask doctor'
-alias brki 'brew cask install'
-alias brkl 'brew cask list'
-alias brkn 'brew cask info'
-alias brkr 'brew cask reinstall'
-alias brku 'brew cask uninstall'
-alias brkup 'brew cask upgrade'
-
-alias brxupc 'brew upgrade; and brew cask upgrade; and brew cleanup'
-
 alias bu 'bundle'
 alias bue 'bundle exec'
 alias buer 'bundle exec rails'
