@@ -40,9 +40,7 @@ defaults -currentHost write com.apple.dock persistent-apps -array # Wipe all def
 defaults -currentHost write com.apple.dock showAppExposeGestureEnabled -bool true # System Preferences -> Trackpad -> More Gestures -> App Expose
 defaults -currentHost write com.apple.dock tilesize -int 36 # Dock icon size is 36 pixels
 defaults -currentHost write com.apple.dock wvous-bl-corner -int 5 # Bottom left screen corner starts the screen saver
-defaults -currentHost write com.apple.dock wvous-bl-modifier -int 0 # Bottom left screen corner starts the screen saver
 defaults -currentHost write com.apple.dock wvous-br-corner -int 10 # Bottom right screen corner puts the display to sleep
-defaults -currentHost write com.apple.dock wvous-br-modifier -int 0 # Bottom right screen corner puts the display to sleep
 
 defaults -currentHost write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
 defaults -currentHost write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
