@@ -1,4 +1,3 @@
-brew 'openssh'
 cask 'air-video-server-hd'
 cask 'backblaze'
 cask 'google-chrome'
