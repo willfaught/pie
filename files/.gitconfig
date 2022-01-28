@@ -45,8 +45,8 @@ followTags = true
 autosquash = true
 [rerere]
 enabled = true
-[url "git@github.com:"]
-insteadOf = https://github.com/
+# [url "git@github.com:"]
+# insteadOf = https://github.com/
 [user]
 email = willfaught@users.noreply.github.com
 name = Will Faught
