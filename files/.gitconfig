@@ -50,6 +50,7 @@ enabled = true
 [user]
 email = willfaught@users.noreply.github.com
 name = Will Faught
+	signingkey = 0CAB5C53D2F73A90
 [filter "lfs"]
 required = true
 clean = git-lfs clean -- %f
