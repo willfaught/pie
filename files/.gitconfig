@@ -1,60 +1,60 @@
 [advice]
-detachedhead = false
+	detachedhead = false
 [alias]
-code-commits = "!f() { git log --pretty=format:'%C(yellow)%h%Cblue%ad%Creset%s%Cgreen[%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-commit-all = "!git add -A && git commit -av"
-commit-branches = "!f() { git branch -a --contains $1; }; f"
-commit-tags = "!f() { git describe --always --contains $1; }; f"
-contributors = "shortlog --summary --numbered"
-delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-history = "log --pretty=oneline -n 20 --graph --abbrev-commit"
-message-commits = "!f() { git log --pretty=format:'%C(yellow)%h%Cblue%ad%Creset%s%Cgreen[%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-pull-all = "!git pull origin master; git submodule foreach git pull origin master"
+	code-commits = "!f() { git log --pretty=format:'%C(yellow)%h%Cblue%ad%Creset%s%Cgreen[%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+	commit-all = "!git add -A && git commit -av"
+	commit-branches = "!f() { git branch -a --contains $1; }; f"
+	commit-tags = "!f() { git describe --always --contains $1; }; f"
+	contributors = "shortlog --summary --numbered"
+	delete-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	history = "log --pretty=oneline -n 20 --graph --abbrev-commit"
+	message-commits = "!f() { git log --pretty=format:'%C(yellow)%h%Cblue%ad%Creset%s%Cgreen[%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	pull-all = "!git pull origin master; git submodule foreach git pull origin master"
 [apply]
-whitespace = fix
+	whitespace = fix
 [branch]
-autosetuprebase = always
+	autosetuprebase = always
 [color]
-ui = true
+	ui = true
 [core]
-autocrlf = input
-pager = less -+F -+X
-precomposeunicode = false
-safecrlf = true
-trustctime = false
-whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	autocrlf = input
+	pager = less -+F -+X
+	precomposeunicode = false
+	safecrlf = true
+	trustctime = false
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [diff]
-renames = copies
+	renames = copies
 [diff "bin"]
-textconv = hexdump -v -C
+	textconv = hexdump -v -C
 [help]
-autocorrect = 1
+	autocorrect = 1
 [include]
-path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 [merge]
-defaulttoupstream = true
-log = true
+	defaulttoupstream = true
+	log = true
 [pager]
-branch = false
+	branch = false
 [pull]
-rebase = true
+	rebase = true
 [push]
-default = current
-followTags = true
+	default = current
+	followTags = true
 [rebase]
-autosquash = true
+	autosquash = true
 [rerere]
-enabled = true
+	enabled = true
 # [url "git@github.com:"]
 # insteadOf = https://github.com/
 [user]
-email = willfaught@users.noreply.github.com
-name = Will Faught
+	email = willfaught@users.noreply.github.com
+	name = Will Faught
 	signingkey = 0CAB5C53D2F73A90
 [filter "lfs"]
-required = true
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [init]
 	defaultBranch = main
