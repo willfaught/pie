@@ -188,7 +188,6 @@ end
 report_step 'Configuring the system'
 run "osascript -e 'tell application \"System Preferences\" to quit'"
 run "#{path_repo '.'}/scripts/defaults.sh"
-run "#{path_repo '.'}/scripts/systemsetup.sh"
 
 # Homebrew
 report_step 'Installing Homebrew'
