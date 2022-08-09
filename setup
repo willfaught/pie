@@ -194,7 +194,6 @@ report_step 'Installing Homebrew'
 run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
 run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
-run 'echo /usr/local/sbin | sudo tee -a /etc/paths >/dev/null' unless contains_line '/etc/paths', /\/usr\/local\/sbin/
 run 'echo /usr/local/bin/fish | sudo tee -a /etc/shells >/dev/null' unless contains_line '/etc/shells', /\/usr\/local\/bin\/fish/
 run 'chsh -s /usr/local/bin/fish' if exists_file('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
 run 'brew doctor'
