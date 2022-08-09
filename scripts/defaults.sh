@@ -39,8 +39,8 @@ defaults -currentHost write com.apple.dock mru-spaces -bool false # Don't automa
 defaults -currentHost write com.apple.dock persistent-apps -array # Wipe all default app icons from the dock
 defaults -currentHost write com.apple.dock showAppExposeGestureEnabled -bool true # System Preferences -> Trackpad -> More Gestures -> App Expose
 defaults -currentHost write com.apple.dock tilesize -int 36 # Dock icon size is 36 pixels
-defaults -currentHost write com.apple.dock wvous-bl-corner -int 10 # Bottom left screen corner puts the display to sleep
-defaults -currentHost write com.apple.dock wvous-br-corner -int 2 # Bottom right screen corner opens Mission Control
+defaults -currentHost write com.apple.dock wvous-bl-corner -int 2 # Bottom left screen corner opens Mission Control
+defaults -currentHost write com.apple.dock wvous-br-corner -int 10 # Bottom right screen corner puts the display to sleep
 
 defaults -currentHost write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
 defaults -currentHost write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
