@@ -208,7 +208,6 @@ run 'fish -c "fisher install pure-fish/pure"'
 
 # Files
 report_step 'Installing files'
-install 'files/.curlrc', '.curlrc'
 install 'files/.editorconfig', '.editorconfig'
 install 'files/.gitconfig', '.gitconfig'
 install 'files/.gitignore', '.gitignore'
