@@ -71,9 +71,19 @@ def exists_file(path)
   return result
 end
 
+def hardlink(from_path, to_path)
+  from_path = File.expand_path from_path
+  to_path = File.expand_path to_path
+  return if File.exist?(from_path) && File.lstat(from_path).ino == File.lstat(to_path).ino
+  backup from_path
+  from_dir = File.dirname(from_path)
+  FileUtils.makedirs(from_dir) if !exists_dir(from_dir)
+  File.link(to_path, from_path)
+end
+
 def install(from, to = nil)
   to = from if to == nil
-  symlink (path_home to), (path_repo from)
+  hardlink (path_home to), (path_repo from)
 end
 
 def path_home(path)
@@ -135,16 +145,6 @@ end
 def run_output(command)
   success, output = run_report(command)
   return output
-end
-
-def symlink(from_path, to_path)
-  from_path = File.expand_path from_path
-  to_path = File.expand_path to_path
-  return if File.symlink?(from_path) && File.readlink(from_path) == to_path
-  backup from_path
-  from_dir = File.dirname(from_path)
-  FileUtils.makedirs(from_dir) if !exists_dir(from_dir)
-  run "ln -s '#{to_path}' '#{from_path}'"
 end
 
 unless run_output('uname').include? 'Darwin'
