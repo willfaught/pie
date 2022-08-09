@@ -3,7 +3,6 @@
 set -x
 
 sudo systemsetup -setcomputersleep Never
-sudo systemsetup -setdisablekeyboardwhenenclosurelockisengaged no
 sudo systemsetup -setdisplaysleep 60
 sudo systemsetup -setharddisksleep 10
 sudo systemsetup -setrestartfreeze on
