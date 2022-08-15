@@ -193,6 +193,18 @@ alias web 'python -m SimpleHTTPServer 8080'
 
 # Functions
 
+function dns-records-a
+  dig $1 +noall +answer -t A
+end
+
+function dns-records-aaaa
+  dig $1 +noall +answer -t A
+end
+
+function dns-records-cname
+  dig www.willfaught.com +nostats +nocomments +nocmd
+end
+
 function drop-lines
   awk "{l[NR] = \$0} END {for (i=1+$1; i<=NR; i++) print l[i]}"
 end
