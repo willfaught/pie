@@ -194,15 +194,15 @@ alias web 'python -m SimpleHTTPServer 8080'
 # Functions
 
 function dns-records-a
-  dig $1 +noall +answer -t A
+  dig $argv[1] +noall +answer -t A
 end
 
 function dns-records-aaaa
-  dig $1 +noall +answer -t A
+  dig $argv[1] +noall +answer -t A
 end
 
 function dns-records-cname
-  dig www.willfaught.com +nostats +nocomments +nocmd
+  dig $argv[1] +nostats +nocomments +nocmd
 end
 
 function drop-lines
