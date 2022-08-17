@@ -1,5 +1,4 @@
 brew 'colordiff'
-brew 'dict'
 brew 'fd'
 brew 'fish'
 brew 'fzf'
