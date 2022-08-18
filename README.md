@@ -41,11 +41,11 @@ Updating does this:
 3. Setup Mac:
 
     ```bash
-    ~/Developer/setup/setup --verbose
+    ~/Developer/setup/install --verbose
     ```
 
 4. Update Mac:
 
     ```bash
-    ~/Developer/setup/setup --verbose --update
+    ~/Developer/setup/install --verbose --update
     ```
