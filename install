@@ -154,14 +154,14 @@ end
 
 # Update
 if $update
-  report_step 'Updating Setup'
+  report_step 'Updating Setup...'
   run "git -C '#{path_repo '.'}' pull origin master"
-  report_step 'Updating Fisher'
-  run 'fish -c "fisher update"'
-  report_step 'Updating Homebrew'
+  report_step 'Updating Homebrew...'
   run 'brew upgrade'
   run 'brew cleanup'
-  report_step 'Updating Janus'
+  report_step 'Updating Fisher...'
+  run 'fish -c "fisher update"'
+  report_step 'Updating Janus...'
   run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
 
   if $failed
@@ -177,20 +177,20 @@ end
 run 'sudo -v'
 
 # Preferences
-report_step 'Configuring the system'
+report_step 'Installing preferences...'
 run "osascript -e 'tell application \"System Preferences\" to quit'"
 run "#{path_repo '.'}/scripts/defaults.sh"
 
 # Keys
 unless exists_file('~/.ssh/id_rsa') && exists_file('~/.ssh/id_rsa.pub')
-  report_step 'Generating new keys'
+  report_step 'Installing keys...'
   backup '~/.ssh/id_rsa'
   backup '~/.ssh/id_rsa.pub'
   run "ssh-keygen -N '' -f '#{Dir.home}/.ssh/id_rsa' -q"
 end
 
 # Files
-report_step 'Installing files'
+report_step 'Installing files...'
 install 'files/.editorconfig', '.editorconfig'
 install 'files/.gitconfig', '.gitconfig'
 install 'files/.gitignore', '.gitignore'
@@ -201,14 +201,19 @@ install 'files/settings.json', 'Library/Application Support/Code/User/settings.j
 
 # Directories
 dev = File.join(Dir.home, 'Developer')
-Dir.mkdir(dev) unless exists_dir dev
+unless exists_dir dev
+  report_step 'Installing directories...'
+  Dir.mkdir(dev)
+end
 
 # Terminal
-report_step 'Installing Solarized'
-run "open '#{path_repo 'files/Solarized.terminal'}'" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
+unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include?('Solarized')
+  report_step 'Installing terminal...'
+  run "open '#{path_repo 'files/Solarized.terminal'}'"
+end
 
 # Homebrew
-report_step 'Installing Homebrew'
+report_step 'Installing Homebrew...'
 run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
 run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
@@ -216,13 +221,15 @@ run 'brew doctor'
 run 'sudo chsh -s /usr/local/bin/fish $USER' if exists_file('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
 
 # Fisher
-report_step 'Installing Fisher'
+report_step 'Installing Fisher...'
 run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
 run 'fish -c "fisher install pure-fish/pure"'
 
 # Janus
-report_step 'Installing Janus'
-run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
+unless exists_dir '~/.vim'
+  report_step 'Installing Janus...'
+  run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"'
+end
 
 if $failed
   report_bad 'Failed'
