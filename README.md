@@ -8,17 +8,16 @@ Setup sets up a fresh Mac with my configuration and software.
 
 Installing does this:
 
-1. Creates SSH keys if they don't exist.
-2. Overrides system and application preferences.
-6. Hard links configuration files.
-7. Creates ~/Developer if it doesn't exist.
-9. Installs a dark Solarized theme for Terminal, and makes it the default.
-3. Installs [Homebrew](https://brew.sh) and various packages.
-4. Installs [Fisher](https://github.com/jorgebucaran/fisher) and [Pure](https://github.com/pure-fish/pure).
-8. Installs [Janus](https://github.com/carlhuda/janus).
-9. Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
+1. **Preferences:** Overrides system and application preferences (needs sudo).
+2. **Keys:** Creates SSH keys if they don't exist.
+3. **Files:** Hard links configuration files.
+4. **Directories:** Creates ~/Developer if it doesn't exist.
+5. **Terminal:** Installs a dark Solarized theme for Terminal, and makes it the default.
+6. **Software:** Installs [Homebrew](https://brew.sh) and various packages. Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
+7. **Software:** Installs [Fisher](https://github.com/jorgebucaran/fisher) and [Pure](https://github.com/pure-fish/pure).
+8. **Software:** Installs [Janus](https://github.com/carlhuda/janus).
 
-If something is already done, it's skipped, except for configuration files, which are backed up by renaming them.
+Steps are skipped if already done if possible. Conflicting files are backed up by renaming them.
 
 ## Updating
 

@@ -176,6 +176,11 @@ end
 # Authenticate
 run 'sudo -v'
 
+# Preferences
+report_step 'Configuring the system'
+run "osascript -e 'tell application \"System Preferences\" to quit'"
+run "#{path_repo '.'}/scripts/defaults.sh"
+
 # Keys
 unless exists_file('~/.ssh/id_rsa') && exists_file('~/.ssh/id_rsa.pub')
   report_step 'Generating new keys'
@@ -183,11 +188,6 @@ unless exists_file('~/.ssh/id_rsa') && exists_file('~/.ssh/id_rsa.pub')
   backup '~/.ssh/id_rsa.pub'
   run "ssh-keygen -N '' -f '#{Dir.home}/.ssh/id_rsa' -q"
 end
-
-# Configuration
-report_step 'Configuring the system'
-run "osascript -e 'tell application \"System Preferences\" to quit'"
-run "#{path_repo '.'}/scripts/defaults.sh"
 
 # Files
 report_step 'Installing files'
