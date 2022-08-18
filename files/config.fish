@@ -146,13 +146,6 @@ alias lsl 'ls -hl'
 
 alias ln 'ln -i'
 
-alias macappinfo 'codesign -dvv'
-alias macappstartup 'lsal /Library/LaunchAgents /Library/LaunchDaemons /Library/StartupItems'
-alias macappverify 'codesign -vv'
-alias macpkgexpand 'pkgutil --expand'
-alias macpkgverify 'pkgutil --check-signature'
-alias macprintgatekeeper 'spctl --status'
-
 alias mk 'make'
 
 alias mkdir 'mkdir -p'
