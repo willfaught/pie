@@ -22,8 +22,8 @@ To use:
     ~/Developer/mac/setup --verbose
     ```
 
-4. Upgrade Mac:
+4. Update Mac:
 
     ```bash
-    ~/Developer/mac/setup --verbose --upgrade
+    ~/Developer/mac/setup --verbose --update
     ```

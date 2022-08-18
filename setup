@@ -6,8 +6,8 @@ require 'optparse'
 
 OptionParser.new do |opts|
   opts.banner = 'Usage: setup [options]'
-  opts.on('-u', '--upgrade', 'Upgrade instead of install') do |v|
-    $upgrade = v
+  opts.on('-u', '--update', 'Update instead of install') do |v|
+    $update = v
   end
   opts.on('-v', '--[no-]verbose', 'Verbose output') do |v|
     $verbose = v
@@ -152,16 +152,16 @@ unless run_output('uname').include? 'Darwin'
   exit 1
 end
 
-# Upgrade
-if $upgrade
-  report_step 'Pulling the latest changes'
+# Update
+if $update
+  report_step 'Updating Setup'
   run "git -C '#{path_repo '.'}' pull origin master"
-  report_step 'Upgrading Fisher'
+  report_step 'Updating Fisher'
   run 'fish -c "fisher update"'
-  report_step 'Upgrading Homebrew'
+  report_step 'Updating Homebrew'
   run 'brew upgrade'
   run 'brew cleanup'
-  report_step 'Upgrading Janus'
+  report_step 'Updating Janus'
   run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
 
   if $failed
