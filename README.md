@@ -1,10 +1,29 @@
-# dotfiles
+# mac
 
-My Unix dotfiles and Mac setup.
+Mac setup and configuration.
 
-To install, run:
+To use:
 
-1. `xcode-select --install`
-2. `git clone https://github.com/willfaught/mac ~/.mac && ~/.mac/setup`.
+1. Install Git:
 
-To update, run: `~/.mac/setup -u`.
+    ```bash
+    xcode-select --install
+    ```
+
+2. Install mac:
+
+    ```bash
+    git clone https://github.com/willfaught/mac ~/Developer/mac
+    ```
+
+3. Setup mac:
+
+    ```bash
+    ~/Developer/mac/setup
+    ```
+
+4. Update mac:
+
+    ```bash
+    ~/Developer/mac/setup -u
+    ```
