@@ -1,4 +1,4 @@
-# mac
+# setup
 
 Mac setup and configuration.
 
@@ -10,20 +10,20 @@ To use:
     xcode-select --install
     ```
 
-2. Install setup:
+2. Install Setup:
 
     ```bash
-    git clone https://github.com/willfaught/mac ~/Developer/mac
+    git clone https://github.com/willfaught/setup ~/Developer/setup
     ```
 
 3. Setup Mac:
 
     ```bash
-    ~/Developer/mac/setup --verbose
+    ~/Developer/setup/setup --verbose
     ```
 
 4. Update Mac:
 
     ```bash
-    ~/Developer/mac/setup --verbose --update
+    ~/Developer/setup/setup --verbose --update
     ```
