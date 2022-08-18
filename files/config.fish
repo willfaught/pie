@@ -38,9 +38,6 @@ alias cl 'clear'
 
 alias cp 'cp -i'
 
-alias dad 'date +"%d-%m-%Y"'
-alias dat 'date +"%T"'
-
 alias diff 'colordiff'
 
 alias dr 'docker'
