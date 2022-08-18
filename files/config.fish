@@ -33,7 +33,6 @@ alias cd...... 'cd ../../../../..'
 alias cdd "cd $HOME/Developer"
 alias cdg "cd $HOME/Developer/go/src"
 alias cdm "cd $HOME/.mac"
-alias cdw "cd $HOME/Developer/go/src/github.com/willfaught"
 
 alias cl 'clear'
 
