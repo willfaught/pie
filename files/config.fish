@@ -172,8 +172,6 @@ alias up5 'cd ../../../../..'
 
 alias vi 'vim'
 
-alias web 'python -m SimpleHTTPServer 8080'
-
 # Functions
 
 function dns-records-a
