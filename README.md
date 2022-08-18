@@ -10,7 +10,7 @@ To use:
     xcode-select --install
     ```
 
-2. Install mac:
+2. Install setup:
 
     ```bash
     git clone https://github.com/willfaught/mac ~/Developer/mac
