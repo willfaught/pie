@@ -40,10 +40,6 @@ alias cp 'cp -i'
 
 alias diff 'colordiff'
 
-alias dr 'docker'
-alias drc 'docker-compose'
-alias drm 'docker-machine'
-
 alias edf 'nvim ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
 alias edfl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
