@@ -154,12 +154,11 @@ alias mv 'mv -i'
 
 alias nv 'nvim'
 
-alias prfilescommand 'sudo lsof -c'
-alias prfilesestablished 'lsof -P -i4 | grep ESTABLISHED'
-alias prfileslisten 'lsof -P -i4 | grep LISTEN'
-alias prfilespid 'sudo lsof -p'
-alias prpath "string replace -a ':' '\n' $PATH"
-alias prpidsdir 'sudo lsof +d'
+alias mac-cmd-files 'sudo lsof -c'
+alias mac-dir-pids 'sudo lsof +d'
+alias mac-files-established 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep ESTABLISHED'
+alias mac-files-listen 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep LISTEN'
+alias mac-pid-files 'sudo lsof -p'
 
 alias rgi 'rg -i'
 alias rgn 'rg --no-ignore'
