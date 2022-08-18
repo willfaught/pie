@@ -40,6 +40,8 @@ alias cp 'cp -i'
 
 alias diff 'colordiff'
 
+alias dig 'dig @8.8.8.8 +noall +answer +multiline'
+
 alias edf 'nvim ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
 alias edfl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
@@ -172,18 +174,6 @@ alias up5 'cd ../../../../..'
 alias vi 'vim'
 
 # Functions
-
-function dns-a
-  dig $argv[1] +noall +answer -t A
-end
-
-function dns-aaaa
-  dig $argv[1] +noall +answer -t A
-end
-
-function dns-cname
-  dig $argv[1] +nostats +nocomments +nocmd
-end
 
 function gibdrb
   git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
