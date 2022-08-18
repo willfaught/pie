@@ -128,15 +128,17 @@ def run_general(command)
 end
 
 def run_report(command)
+  if $verbose
+    report_step "Running: #{command}"
+  end
   success, output = run_general(command)
-  if success
-    if $verbose
-      report_good "Succeeded: #{command}"
-      report output unless output.empty?
-    end
-  else
-    report_bad "Failed: #{command}"
+  if $verbose
     report output unless output.empty?
+    if success
+      report_good 'Succeeded'
+    else
+      report_bad 'Failed'
+    end
   end
   $failed = !success unless $failed
   return success, output
@@ -154,14 +156,11 @@ end
 
 # Update
 if $update
-  report_step 'Updating Setup...'
+  report_step 'Updating software...'
   run "git -C '#{path_repo '.'}' pull origin master"
-  report_step 'Updating Homebrew...'
   run 'brew upgrade'
   run 'brew cleanup'
-  report_step 'Updating Fisher...'
   run 'fish -c "fisher update"'
-  report_step 'Updating Janus...'
   run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
 
   if $failed
@@ -212,8 +211,10 @@ unless run_output('defaults read com.apple.Terminal "Default Window Settings"').
   run "open '#{path_repo 'files/Solarized.terminal'}'"
 end
 
+# Software
+report_step 'Installing software...'
+
 # Homebrew
-report_step 'Installing Homebrew...'
 run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
 run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
@@ -221,15 +222,11 @@ run 'brew doctor'
 run 'sudo chsh -s /usr/local/bin/fish $USER' if exists_file('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
 
 # Fisher
-report_step 'Installing Fisher...'
 run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
 run 'fish -c "fisher install pure-fish/pure"'
 
 # Janus
-unless exists_dir '~/.vim'
-  report_step 'Installing Janus...'
-  run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"'
-end
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
 
 if $failed
   report_bad 'Failed'
