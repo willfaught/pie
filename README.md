@@ -16,14 +16,14 @@ To use:
     git clone https://github.com/willfaught/mac ~/Developer/mac
     ```
 
-3. Setup mac:
+3. Setup Mac:
 
     ```bash
-    ~/Developer/mac/setup
+    ~/Developer/mac/setup --verbose
     ```
 
-4. Update mac:
+4. Upgrade Mac:
 
     ```bash
-    ~/Developer/mac/setup -u
+    ~/Developer/mac/setup --verbose --upgrade
     ```
