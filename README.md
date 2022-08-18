@@ -1,8 +1,6 @@
 # setup
 
-Mac setup and configuration.
-
-Setup sets up a fresh Mac with my configuration and software.
+Setup sets up a fresh Mac with preferences, configuration, and software.
 
 ## Installing
 
