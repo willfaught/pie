@@ -2,7 +2,33 @@
 
 Mac setup and configuration.
 
-To use:
+Setup sets up a fresh Mac with my configuration and software.
+
+## Installing
+
+Installing does this:
+
+1. Creates SSH keys if they don't exist.
+2. Overrides system and application preferences.
+6. Hard links configuration files.
+7. Creates ~/Developer if it doesn't exist.
+9. Installs a dark Solarized theme for Terminal and makes it the default.
+3. Installs [Homebrew](https://brew.sh) and various packages.
+4. Installs [Fisher](https://github.com/jorgebucaran/fisher) and [Pure](https://github.com/pure-fish/pure).
+8. Installs [Janus](https://github.com/carlhuda/janus).
+
+If something is already done, it's skipped, except for configuration files, which are backed up by renaming them.
+
+## Updating
+
+Updating does this:
+
+1. Updates this repository.
+2. Updates Homebrew.
+3. Updates Fisher.
+4. Updates Janus.
+
+## Usage
 
 1. Install Git:
 
