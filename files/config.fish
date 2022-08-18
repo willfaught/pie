@@ -173,15 +173,15 @@ alias vi 'vim'
 
 # Functions
 
-function dns-records-a
+function dns-a
   dig $argv[1] +noall +answer -t A
 end
 
-function dns-records-aaaa
+function dns-aaaa
   dig $argv[1] +noall +answer -t A
 end
 
-function dns-records-cname
+function dns-cname
   dig $argv[1] +nostats +nocomments +nocmd
 end
 
