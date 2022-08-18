@@ -31,7 +31,7 @@ alias cd..... 'cd ../../../..'
 alias cd...... 'cd ../../../../..'
 
 alias cdd "cd $HOME/Developer"
-alias cdm "cd $HOME/Developer/mac"
+alias cds "cd $HOME/Developer/setup"
 
 alias cl 'clear'
 
