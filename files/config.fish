@@ -185,20 +185,28 @@ function dns-records-cname
   dig $argv[1] +nostats +nocomments +nocmd
 end
 
-function drop-lines
-  awk "{l[NR] = \$0} END {for (i=1+$1; i<=NR; i++) print l[i]}"
-end
-
-function drop-lines-last
-  awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}"
-end
-
 function gibdrb
   git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
 end
 
 function kcrp
   kubectl run -i -t --image $argv[1] --restart Never --rm $argv[2]
+end
+
+function lines-drop
+  awk "{l[NR] = \$0} END {for (i=1+$1; i<=NR; i++) print l[i]}"
+end
+
+function lines-drop-last
+  awk "{l[NR] = \$0} END {for (i=1; i<=NR-$1; i++) print l[i]}"
+end
+
+function lines-take
+  awk "{l[NR] = \$0} END {for (i=1; i<=$1; i++) print l[i]}"
+end
+
+function lines-take-last
+  awk "{l[NR] = \$0} END {for (i=NR-$1+1; i<=NR; i++) print l[i]}"
 end
 
 function mac-port
@@ -211,14 +219,6 @@ end
 
 function mac-temp-gpu
   sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
-end
-
-function take-lines
-  awk "{l[NR] = \$0} END {for (i=1; i<=$1; i++) print l[i]}"
-end
-
-function take-lines-last
-  awk "{l[NR] = \$0} END {for (i=NR-$1+1; i<=NR; i++) print l[i]}"
 end
 
 function up
