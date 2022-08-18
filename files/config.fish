@@ -199,7 +199,7 @@ function lines-take-last
   awk "{l[NR] = \$0} END {for (i=NR-$argv[1]+1; i<=NR; i++) print l[i]}"
 end
 
-function mac-port
+function mac-port-cmds
   lsof -Pn -iTCP:$argv[1]
 end
 
