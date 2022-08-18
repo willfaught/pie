@@ -189,19 +189,6 @@ report_step 'Configuring the system'
 run "osascript -e 'tell application \"System Preferences\" to quit'"
 run "#{path_repo '.'}/scripts/defaults.sh"
 
-# Homebrew
-report_step 'Installing Homebrew'
-run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
-run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
-run 'brew cleanup'
-run 'brew doctor'
-run 'sudo chsh -s /usr/local/bin/fish $USER' if exists_file('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
-
-# Fisher
-report_step 'Installing Fisher'
-run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
-run 'fish -c "fisher install pure-fish/pure"'
-
 # Files
 report_step 'Installing files'
 install 'files/.editorconfig', '.editorconfig'
@@ -216,13 +203,26 @@ install 'files/settings.json', 'Library/Application Support/Code/User/settings.j
 dev = File.join(Dir.home, 'Developer')
 Dir.mkdir(dev) unless exists_dir dev
 
-# Janus
-report_step 'Installing Janus'
-run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
-
 # Terminal
 report_step 'Installing Solarized'
 run "open '#{path_repo 'files/Solarized.terminal'}'" unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include? 'Solarized'
+
+# Homebrew
+report_step 'Installing Homebrew'
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
+run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
+run 'brew cleanup'
+run 'brew doctor'
+run 'sudo chsh -s /usr/local/bin/fish $USER' if exists_file('/usr/local/bin/fish') && !run_output('sh -c "echo $SHELL"').include?('/usr/local/bin/fish')
+
+# Fisher
+report_step 'Installing Fisher'
+run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
+run 'fish -c "fisher install pure-fish/pure"'
+
+# Janus
+report_step 'Installing Janus'
+run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
 
 if $failed
   report_bad 'Failed'
