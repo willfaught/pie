@@ -25,7 +25,6 @@
 [include]
 	path = ~/.gitconfig.local
 [merge]
-	defaulttoupstream = true
 	log = true
 [pager]
 	branch = false
