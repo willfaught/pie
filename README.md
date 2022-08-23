@@ -10,7 +10,7 @@ Installing does this:
 2. **Keys:** Creates SSH keys.
 3. **Files:** Hard links configuration files.
 4. **Directories:** Creates ~/Developer.
-5. **Terminal:** Installs a dark Solarized theme for Terminal, and makes it the default.
+5. **Terminal:** Installs a [VS Code Dark Plus](https://github.com/lysyi3m/macos-terminal-themes#vs-code-dark-plus-download) profile for Terminal, and makes it the default.
 6. **Software:** Installs [Homebrew](https://brew.sh) and various packages, [Fisher](https://github.com/jorgebucaran/fisher), [Pure](https://github.com/pure-fish/pure), and [Janus](https://github.com/carlhuda/janus). Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
 
 Steps are skipped if already done if possible. Conflicting files are backed up by renaming them.

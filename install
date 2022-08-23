@@ -206,10 +206,8 @@ unless exists_dir dev
 end
 
 # Terminal
-unless run_output('defaults read com.apple.Terminal "Default Window Settings"').include?('Solarized')
-  report_step 'Installing terminal...'
-  run "open '#{path_repo 'files/Solarized.terminal'}'"
-end
+report_step 'Installing terminal...'
+run "open '#{path_repo 'files/VS Code Dark Plus.terminal'}'"
 
 # Software
 report_step 'Installing software...'
