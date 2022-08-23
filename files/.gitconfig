@@ -29,8 +29,6 @@
 	path = ~/.gitconfig.local
 [pull]
 	rebase = true
-[push]
-	followTags = true
 [rebase]
 	autosquash = true
 [rerere]
