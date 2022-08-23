@@ -12,8 +12,6 @@
 	pull-all = "!git pull origin master; git submodule foreach git pull origin master"
 [branch]
 	autosetuprebase = always
-[color]
-	ui = true
 [core]
 	autocrlf = input
 	pager = less -+F -+X
