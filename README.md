@@ -38,7 +38,7 @@ Updating does this:
     git clone https://github.com/willfaught/setup ~/Developer/setup
     ```
 
-3. Setup Mac:
+3. Install Mac:
 
     ```bash
     ~/Developer/setup/install --verbose
