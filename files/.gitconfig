@@ -22,6 +22,8 @@
 	renames = copies
 [diff "bin"]
 	textconv = hexdump -v -C
+[fetch]
+	prune = true
 [include]
 	path = ~/.gitconfig.local
 [pull]
