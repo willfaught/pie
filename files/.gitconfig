@@ -19,6 +19,7 @@
 	safecrlf = true
 	trustctime = false
 [diff]
+	colormoved = zebra
 	renames = copies
 [diff "bin"]
 	textconv = hexdump -v -C
