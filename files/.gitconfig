@@ -10,8 +10,6 @@
 	history = "log --pretty=oneline -n 20 --graph --abbrev-commit"
 	message-commits = "!f() { git log --pretty=format:'%C(yellow)%h%Cblue%ad%Creset%s%Cgreen[%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 	pull-all = "!git pull origin master; git submodule foreach git pull origin master"
-[apply]
-	whitespace = fix
 [branch]
 	autosetuprebase = always
 [color]
