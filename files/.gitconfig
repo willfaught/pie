@@ -24,8 +24,6 @@
 	textconv = hexdump -v -C
 [include]
 	path = ~/.gitconfig.local
-[merge]
-	log = true
 [pager]
 	branch = false
 [pull]
