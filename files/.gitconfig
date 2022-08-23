@@ -39,7 +39,7 @@
 [user]
 	email = willfaught@users.noreply.github.com
 	name = Will Faught
-	#signingkey =
+#	signingkey =
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
