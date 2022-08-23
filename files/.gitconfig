@@ -26,8 +26,6 @@
 	renames = copies
 [diff "bin"]
 	textconv = hexdump -v -C
-[help]
-	autocorrect = 1
 [include]
 	path = ~/.gitconfig.local
 [merge]
