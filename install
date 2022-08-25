@@ -149,6 +149,16 @@ def run_output(command)
   return output
 end
 
+def softlink(from_path, to_path)
+  from_path = File.expand_path from_path
+  to_path = File.expand_path to_path
+  return if File.exist?(from_path) && File.symlink?(from_path) && File.readlink(from_path) == File.readlink(to_path)
+  backup from_path
+  from_dir = File.dirname(from_path)
+  FileUtils.makedirs(from_dir) if !exists_dir(from_dir)
+  File.symlink(to_path, from_path)
+end
+
 unless run_output('uname').include? 'Darwin'
   report_error 'Error: Computer is not a Mac'
   exit 1
@@ -225,6 +235,8 @@ run 'fish -c "fisher install pure-fish/pure"'
 
 # Janus
 run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
+softlink('~/.config/nvim', '~/.vim')
+softlink('~/.config/nvim/init.vim', '~/.vimrc')
 
 if $failed
   report_bad 'Failed'
