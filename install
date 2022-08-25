@@ -152,7 +152,7 @@ end
 def softlink(from_path, to_path)
   from_path = File.expand_path from_path
   to_path = File.expand_path to_path
-  return if File.exist?(from_path) && File.symlink?(from_path) && File.readlink(from_path) == File.readlink(to_path)
+  return if File.exist?(from_path) && File.symlink?(from_path) && File.readlink(from_path) == to_path
   backup from_path
   from_dir = File.dirname(from_path)
   FileUtils.makedirs(from_dir) if !exists_dir(from_dir)
