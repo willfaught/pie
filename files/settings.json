@@ -1,39 +1,31 @@
 {
     "editor.codeLens": false,
-    "explorer.openEditors.visible": 0,
-    "go.enableCodeLens": {
-        "references": false,
-        "runtest": false
-    },
-    "go.editorContextMenuCommands": {
-        "testAtCursor": true,
-        "testFile": true,
-        "testPackage": true
-    },
-    "workbench.startupEditor": "newUntitledFile",
     "editor.folding": false,
-    "git.autofetch": true,
-    "go.formatTool": "goimports",
-    "ruby.codeCompletion": "rcodetools",
-    "ruby.format": "rubocop",
-    "ruby.intellisense": "rubyLocate",
-    "ruby.useLanguageServer": true,
-    "ruby.lint": {
-        "rubocop": {
-            "useBundler": true
-        }
-    },
-    "gitlens.hovers.currentLine.over": "line",
-    "gitlens.currentLine.enabled": false,
-    "gitlens.codeLens.enabled": false,
-    "go.toolsManagement.autoUpdate": true,
-    "workbench.editor.untitled.hint": "hidden",
     "editor.quickSuggestions": {
         "other": "off",
         "comments": "off",
         "strings": "off"
     },
+    "explorer.openEditors.visible": 0,
+    "git.autofetch": true,
+    "go.editorContextMenuCommands": {
+        "testAtCursor": true,
+        "testFile": true,
+        "testPackage": true
+    },
+    "go.enableCodeLens": {
+        "references": false,
+        "runtest": false
+    },
+    "go.formatTool": "goimports",
+    "go.toolsManagement.autoUpdate": true,
     "gopls": {
         "ui.semanticTokens": true
-    }
+    },
+    "html.format.extraLiners": "",
+    "html.format.indentHandlebars": true,
+    "html.format.indentInnerHtml": true,
+    "html.format.wrapLineLength": 0,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.startupEditor": "newUntitledFile"
 }
