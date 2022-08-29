@@ -47,6 +47,7 @@ alias edfl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; a
 
 alias gia 'git add'
 alias giaa 'git add -A'
+alias giap 'git add -p'
 alias gib 'git branch'
 alias gibd 'git branch -d'
 alias gibdf 'git branch -D'
