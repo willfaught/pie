@@ -2,11 +2,12 @@
     "editor.codeLens": false,
     "editor.folding": false,
     "editor.quickSuggestions": {
-        "other": "off",
         "comments": "off",
+        "other": "off",
         "strings": "off"
     },
     "explorer.openEditors.visible": 0,
+    "files.insertFinalNewline": true,
     "git.autofetch": true,
     "go.editorContextMenuCommands": {
         "testAtCursor": true,
