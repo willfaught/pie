@@ -207,6 +207,14 @@ function mac-temp-gpu
   sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
 end
 
+function replace
+  rg -e $argv[1] $argv[3..-1] --files-with-matches | xargs -n 1 sed -i '' "s/$argv[1]/$argv[2]/g"
+end
+
+function search
+  rg -e $argv[1] $argv[2..-1]
+end
+
 function up
   cd ..
   while test (pwd) != "/"; and test (basename (pwd)) != $argv[1]
