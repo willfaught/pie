@@ -23,6 +23,10 @@
 	textconv = hexdump -v -C
 [fetch]
 	prune = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	defaultKeyCommand = ssh-add -L
 [include]
 	path = ~/.gitconfig.local
 [pull]

@@ -197,6 +197,7 @@ unless exists_file('~/.ssh/id_rsa') && exists_file('~/.ssh/id_rsa.pub')
   backup '~/.ssh/id_rsa.pub'
   run "ssh-keygen -N '' -f '#{Dir.home}/.ssh/id_rsa' -q"
 end
+run "ssh-add -q '#{Dir.home}/.ssh/id_rsa'"
 
 # Files
 report_step 'Installing files...'
