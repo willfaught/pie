@@ -26,9 +26,11 @@
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	defaultKeyCommand = ssh-add -L
+	defaultkeycommand = ssh-add -L
 [include]
 	path = ~/.gitconfig.local
+[init]
+	defaultbranch = master
 [pull]
 	rebase = true
 [rebase]
