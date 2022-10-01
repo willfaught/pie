@@ -208,7 +208,7 @@ function mac-temp-gpu
 end
 
 function replace
-  rg -e $argv[1] $argv[3..-1] --files-with-matches | xargs -n 1 sed -E -i '' -e "s/$argv[1]/$argv[2]/g"
+  find . -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
 
 function search
