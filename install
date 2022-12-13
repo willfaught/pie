@@ -83,7 +83,7 @@ end
 
 def install(from, to = nil)
   to = from if to == nil
-  hardlink (path_home to), (path_repo from)
+  softlink (path_home to), (path_repo from)
 end
 
 def path_home(path)
