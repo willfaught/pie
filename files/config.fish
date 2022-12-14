@@ -1,7 +1,7 @@
 # Variables
 
-set -gx EDITOR 'nvim'
-set -gx GOPATH "$HOME/Developer/go"
+set -gx EDITOR nvim
+set -gx GOPATH "$HOME/Library/Application Support/go"
 set -gx PATH $PATH $GOPATH/bin
 
 # Aliases
