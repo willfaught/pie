@@ -203,7 +203,7 @@ run "ssh-add -q '#{Dir.home}/.ssh/id_rsa'"
 report_step 'Installing files...'
 install 'files/.editorconfig', '.editorconfig'
 install 'files/.gitconfig', '.gitconfig'
-install 'files/.gitignore', '.gitignore'
+install 'files/ignore', '.config/git/ignore'
 install 'files/.hushlogin', '.hushlogin'
 install 'files/.inputrc', '.inputrc'
 install 'files/config.fish', '.config/fish/config.fish'
