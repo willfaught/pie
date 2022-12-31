@@ -206,6 +206,12 @@ function mac-temp-gpu
   sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
 end
 
+function git-rename
+  for file in $argv[3..-1]
+    git mv $file $(echo $file | sed -e "s/$argv[1]/$argv[2]/")
+  end
+end
+
 function replace
   find . -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
