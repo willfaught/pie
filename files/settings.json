@@ -7,6 +7,7 @@
         "strings": "off"
     },
     "explorer.openEditors.visible": 0,
+    "explorer.sortOrderLexicographicOptions": "unicode",
     "files.insertFinalNewline": true,
     "git.autofetch": true,
     "go.editorContextMenuCommands": {
