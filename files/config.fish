@@ -212,6 +212,12 @@ function git-rename
   end
 end
 
+function rename
+  for file in $argv[3..-1]
+    mv $file $(echo $file | sed -e "s/$argv[1]/$argv[2]/")
+  end
+end
+
 function replace
   find . -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
