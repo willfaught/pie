@@ -174,6 +174,12 @@ function gibdrb
   git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
 end
 
+function git-rename
+  for file in $argv[3..-1]
+    git mv $file $(echo $file | sed -e "s/$argv[1]/$argv[2]/")
+  end
+end
+
 function kcrp
   kubectl run -i -t --image $argv[1] --restart Never --rm $argv[2]
 end
@@ -204,12 +210,6 @@ end
 
 function mac-temp-gpu
   sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
-end
-
-function git-rename
-  for file in $argv[3..-1]
-    git mv $file $(echo $file | sed -e "s/$argv[1]/$argv[2]/")
-  end
 end
 
 function rename
