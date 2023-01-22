@@ -203,7 +203,7 @@ function lines-take
 end
 
 function lines-take-if
-  egrep $argv[1]
+  sed -E -n "/$argv[1]/p"
 end
 
 function lines-take-last
