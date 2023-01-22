@@ -186,6 +186,10 @@ function lines-drop
   awk "{ l[NR] = \$0; } END { for (i = 1 + $argv[1]; i <= NR; i++) print l[i]; }"
 end
 
+function lines-drop-if
+  egrep -v $argv[1]
+end
+
 function lines-drop-last
   awk "{ l[NR] = \$0; } END { for (i = 1; i <= NR - $argv[1]; i++) print l[i]; }"
 end
@@ -196,6 +200,10 @@ end
 
 function lines-take
   awk "{ l[NR] = \$0; } END { for (i = 1; i <= $argv[1]; i++) print l[i]; }"
+end
+
+function lines-take-if
+  egrep $argv[1]
 end
 
 function lines-take-last
