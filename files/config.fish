@@ -191,7 +191,7 @@ function lines-drop-if
 end
 
 function lines-drop-last
-  sed -n -e :a -e "1,$argv[1]!{P;N;D;};N;ba"
+  sed -E -n -e :a -e "1,$argv[1]!{P;N;D;};N;ba"
 end
 
 function lines-drop-while
