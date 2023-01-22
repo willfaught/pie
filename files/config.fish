@@ -183,7 +183,7 @@ function kcrp
 end
 
 function lines-drop
-  sed -e "1,$argv[1]d"
+  sed -E "1,$argv[1]d"
 end
 
 function lines-drop-if
