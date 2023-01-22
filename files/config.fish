@@ -188,6 +188,10 @@ function lines-drop
   awk "{l[NR] = \$0} END {for (i=1+$argv[1]; i<=NR; i++) print l[i]}"
 end
 
+function lines-drop-while
+  awk "BEGIN { start = 0; } { if (\$0 !~ /$argv[1]/) { start = 1; } } { if (start) print \$0; }"
+end
+
 function lines-drop-last
   awk "{l[NR] = \$0} END {for (i=1; i<=NR-$argv[1]; i++) print l[i]}"
 end
