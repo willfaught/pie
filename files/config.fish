@@ -183,7 +183,7 @@ function kcrp
 end
 
 function lines-drop
-  awk "{ l[NR] = \$0; } END { for (i = 1 + $argv[1]; i <= NR; i++) print l[i]; }"
+  sed -e "1,$argv[1]d"
 end
 
 function lines-drop-if
