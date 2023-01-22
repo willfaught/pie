@@ -43,9 +43,6 @@ alias diff 'colordiff'
 
 alias dig 'dig @8.8.8.8 +noall +answer +multiline'
 
-alias edf 'nvim ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
-alias edfl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
-
 alias gia 'git add'
 alias giaa 'git add -A'
 alias giap 'git add -p'
@@ -165,6 +162,9 @@ alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
 alias vi 'nvim'
+
+alias vif 'nvim ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
+alias vifl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
 # Functions
 
