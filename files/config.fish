@@ -199,7 +199,7 @@ function lines-take
 end
 
 function lines-take-while
-  awk "\$0 ~ /$argv[1]/ {print \$0}"
+  awk "BEGIN { stop = 0; } { if (\$0 !~ /$argv[1]/) { stop = 1; } } { if (!stop) print \$0; }"
 end
 
 function lines-take-last
