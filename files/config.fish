@@ -187,7 +187,7 @@ function lines-drop
 end
 
 function lines-drop-if
-  sed -E -n "/$argv[1]/!p"
+  egrep -v $argv[1]
 end
 
 function lines-drop-last
@@ -203,7 +203,7 @@ function lines-take
 end
 
 function lines-take-if
-  sed -E -n "/$argv[1]/p"
+  egrep $argv[1]
 end
 
 function lines-take-last
