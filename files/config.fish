@@ -149,8 +149,6 @@ alias mkdir 'mkdir -p'
 
 alias mv 'mv -i'
 
-alias nv 'nvim'
-
 alias mac-cmd-files 'sudo lsof -c'
 alias mac-dir-pids 'sudo lsof +d'
 alias mac-files-established 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep ESTABLISHED'
