@@ -187,7 +187,7 @@ function lines-drop
 end
 
 function lines-drop-if
-  egrep -v $argv[1]
+  sed -E -n "/$argv[1]/!p"
 end
 
 function lines-drop-last
