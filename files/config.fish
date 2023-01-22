@@ -199,7 +199,7 @@ function lines-drop-while
 end
 
 function lines-take
-  awk "{ l[NR] = \$0; } END { for (i = 1; i <= $argv[1]; i++) print l[i]; }"
+  head -n $argv[1]
 end
 
 function lines-take-if
