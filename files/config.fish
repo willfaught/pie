@@ -195,7 +195,7 @@ function lines-drop-last
 end
 
 function lines-drop-while
-  awk "BEGIN { start = 0; } { if (\$0 !~ /$argv[1]/) { start = 1; } } { if (start) print \$0; }"
+  awk "{ if (\$0 !~ /$argv[1]/) start = 1; if (start) print \$0; }"
 end
 
 function lines-take
