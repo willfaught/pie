@@ -211,7 +211,7 @@ function lines-take-last
 end
 
 function lines-take-while
-  awk "BEGIN { stop = 0; } { if (\$0 !~ /$argv[1]/) { stop = 1; } } { if (!stop) print \$0; }"
+  awk "{ if (\$0 !~ /$argv[1]/) exit; print \$0; }"
 end
 
 function mac-port-cmds
