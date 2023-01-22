@@ -191,7 +191,7 @@ function lines-drop-if
 end
 
 function lines-drop-last
-  awk "{ l[NR] = \$0; } END { for (i = 1; i <= NR - $argv[1]; i++) print l[i]; }"
+  sed -n -e :a -e "1,$argv[1]!{P;N;D;};N;ba"
 end
 
 function lines-drop-while
