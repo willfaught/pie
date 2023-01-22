@@ -206,6 +206,7 @@ install 'files/.gitconfig', '.gitconfig'
 install 'files/ignore', '.config/git/ignore'
 install 'files/.hushlogin', '.hushlogin'
 install 'files/.inputrc', '.inputrc'
+install 'files/.vimrc.after', '.vimrc.after'
 install 'files/config.fish', '.config/fish/config.fish'
 install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
 
