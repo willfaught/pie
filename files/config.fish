@@ -183,7 +183,7 @@ function kcrp
 end
 
 function lines-drop
-  awk "{l[NR] = \$0} END {for (i=1+$argv[1]; i<=NR; i++) print l[i]}"
+  awk "{ l[NR] = \$0; } END { for (i = 1 + $argv[1]; i <= NR; i++) print l[i]; }"
 end
 
 function lines-drop-while
@@ -191,11 +191,11 @@ function lines-drop-while
 end
 
 function lines-drop-last
-  awk "{l[NR] = \$0} END {for (i=1; i<=NR-$argv[1]; i++) print l[i]}"
+  awk "{ l[NR] = \$0; } END { for (i = 1; i <= NR - $argv[1]; i++) print l[i]; }"
 end
 
 function lines-take
-  awk "{l[NR] = \$0} END {for (i=1; i<=$argv[1]; i++) print l[i]}"
+  awk "{ l[NR] = \$0; } END { for (i = 1; i <= $argv[1]; i++) print l[i]; }"
 end
 
 function lines-take-while
@@ -203,7 +203,7 @@ function lines-take-while
 end
 
 function lines-take-last
-  awk "{l[NR] = \$0} END {for (i=NR-$argv[1]+1; i<=NR; i++) print l[i]}"
+  awk "{ l[NR] = \$0; } END { for (i = NR - $argv[1] + 1; i <= NR; i++) print l[i]; }"
 end
 
 function mac-port-cmds
