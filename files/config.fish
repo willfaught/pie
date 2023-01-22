@@ -166,7 +166,7 @@ alias up3 'cd ../../..'
 alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
-alias vi 'vim'
+alias vi 'nvim'
 
 # Functions
 
