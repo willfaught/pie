@@ -207,7 +207,7 @@ function lines-take-if
 end
 
 function lines-take-last
-  awk "{ l[NR] = \$0; } END { for (i = NR - $argv[1] + 1; i <= NR; i++) print l[i]; }"
+  tail -n $argv[1]
 end
 
 function lines-take-while
