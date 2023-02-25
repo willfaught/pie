@@ -6,7 +6,7 @@
         "other": "off",
         "strings": "off"
     },
-    "editor.renderFinalNewline": false,
+    "editor.renderFinalNewline": "off",
     "explorer.openEditors.visible": 0,
     "explorer.sortOrderLexicographicOptions": "unicode",
     "files.insertFinalNewline": true,
