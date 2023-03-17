@@ -175,8 +175,11 @@ function gibdrb
 end
 
 function git-rename
-  for file in $argv[3..-1]
-    git mv $file $(echo $file | sed -e "s/$argv[1]/$argv[2]/")
+  for old_file in $argv[3..-1]
+    set new_file (echo $old_file | perl -pe "s/$argv[1]/$argv[2]/")
+    if test $old_file != $new_file
+      git mv $old_file $new_file
+    end
   end
 end
 
