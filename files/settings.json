@@ -30,5 +30,8 @@
     "html.format.indentInnerHtml": true,
     "html.format.wrapLineLength": 0,
     "workbench.editor.untitled.hint": "hidden",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "[python]": {
+        "editor.formatOnType": true
+    }
 }
