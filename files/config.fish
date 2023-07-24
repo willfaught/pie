@@ -30,10 +30,10 @@ alias cd.... 'cd ../../..'
 alias cd..... 'cd ../../../..'
 alias cd...... 'cd ../../../../..'
 
+alias cdb "cd $HOME/Developer/willfaught.github.io"
 alias cdd "cd $HOME/Developer"
 alias cdp "cd $HOME/Developer/paige"
 alias cds "cd $HOME/Developer/setup"
-alias cdw "cd $HOME/Developer/willfaught.github.io"
 
 alias cl 'clear'
 
