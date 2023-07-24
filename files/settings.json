@@ -33,5 +33,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
         "editor.formatOnType": true
-    }
+    },
+    "editor.inlineSuggest.enabled": true
 }
