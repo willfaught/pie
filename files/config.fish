@@ -41,6 +41,8 @@ alias cp 'cp -i'
 
 alias diff 'colordiff'
 
+alias dr 'docker'
+
 alias dig 'dig @8.8.8.8 +noall +answer +multiline'
 
 alias gia 'git add'
