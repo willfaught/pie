@@ -1,6 +1,7 @@
 {
     "editor.codeLens": false,
     "editor.folding": false,
+    "editor.inlineSuggest.enabled": true,
     "editor.quickSuggestions": {
         "comments": "off",
         "other": "off",
@@ -11,6 +12,13 @@
     "explorer.sortOrderLexicographicOptions": "unicode",
     "files.insertFinalNewline": true,
     "git.autofetch": true,
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": true,
+        "plaintext": false,
+        "scminput": false
+    },
+    "go.buildTags": "integration",
     "go.editorContextMenuCommands": {
         "testAtCursor": true,
         "testFile": true,
@@ -32,6 +40,5 @@
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
         "editor.formatOnType": true
-    },
-    "editor.inlineSuggest.enabled": true
+    }
 }
