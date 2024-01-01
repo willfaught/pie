@@ -115,6 +115,7 @@ alias gis 'git status'
 alias gish 'git show'
 alias gishw 'git show --word-diff=color'
 alias gist 'git stash'
+alias gistd 'git stash drop'
 alias gistp 'git stash pop'
 
 alias gob 'go build ./...'
