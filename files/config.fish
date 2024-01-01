@@ -39,6 +39,8 @@ alias cl 'clear'
 
 alias cp 'cp -i'
 
+alias cu 'curl --show-error --silent'
+
 alias diff 'colordiff'
 
 alias dr 'docker'
