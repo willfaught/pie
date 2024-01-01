@@ -119,6 +119,7 @@ alias gistd 'git stash drop'
 alias gistp 'git stash pop'
 
 alias gob 'go build ./...'
+alias gobv 'go build -v ./...'
 alias god 'go doc'
 alias godu 'go doc -u'
 alias gof 'go fmt ./...'
