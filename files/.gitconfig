@@ -49,3 +49,5 @@
 	process = git-lfs filter-process
 	required = true
 	smudge = git-lfs smudge -- %f
+[advice]
+	skippedCherryPicks = false
