@@ -300,7 +300,7 @@ function repeat
 end
 
 function replace
-  find . -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
+  find . ! -name .DS_Store -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
 
 function search
