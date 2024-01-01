@@ -17,7 +17,6 @@
         "testPackage": true
     },
     "go.enableCodeLens": {
-        "references": false,
         "runtest": false
     },
     "go.formatTool": "goimports",
