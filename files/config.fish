@@ -181,8 +181,42 @@ alias vifl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; a
 
 # Functions
 
-function gibdrb
-  git checkout master; and git pull origin; and git checkout $argv[1]; and git rebase master; and git checkout master; and git branch -d $argv[1]
+function cuj
+  curl -Ss -H 'Accept: application/json' -H 'Content-Type: application/json' $argv | jq
+end
+
+function gibdrbm
+  git checkout master
+  and git pull origin
+  and git checkout $argv[1]
+  and git rebase master
+  and git checkout master
+  and git branch -d $argv[1]
+end
+
+function gibdrbmn
+  git checkout main
+  and git pull origin
+  and git checkout $argv[1]
+  and git rebase main
+  and git checkout main
+  and git branch -d $argv[1]
+end
+
+function giprbm
+  set -l branch (git branch --show-current)
+  git checkout master
+  and git pull origin
+  and git checkout $branch
+  and git rebase master
+end
+
+function giprbmn
+  set -l branch (git branch --show-current)
+  git checkout main
+  and git pull origin
+  and git checkout $branch
+  and git rebase main
 end
 
 function git-rename
