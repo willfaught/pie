@@ -285,6 +285,20 @@ function rename
   end
 end
 
+function repeat
+  argparse -n repeat 'n=' -- $argv
+  or return
+  if set -q _flag_n
+    for x in (seq 1 $_flag_n)
+      $argv
+    end
+  else
+    while true
+      $argv
+    end
+  end
+end
+
 function replace
   find . -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
