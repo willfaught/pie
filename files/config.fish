@@ -2,7 +2,7 @@
 
 set -gx EDITOR nvim
 set -gx GOPATH "$HOME/Library/Application Support/go"
-set -gx PATH $PATH $GOPATH/bin
+set -gx PATH /opt/homebrew/bin /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin $GOPATH/bin
 
 # Aliases
 
@@ -98,8 +98,10 @@ alias girbim 'git rebase -i master'
 alias girbimn 'git rebase -i main'
 alias girbm 'git rebase master'
 alias girbmn 'git rebase main'
+alias girbtmn 'git rebase --strategy-option theirs main'
 alias girbom 'git rebase origin/master'
 alias girbomn 'git rebase origin/main'
+alias girbotmn 'git rebase --strategy-option theirs origin/main'
 alias girs 'git reset'
 alias girsh 'git reset --hard'
 alias girshm 'git reset --hard master'
