@@ -41,7 +41,6 @@
 [user]
 	email = willfaught@users.noreply.github.com
 	name = Will Faught
-#	signingkey =
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
