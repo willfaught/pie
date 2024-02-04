@@ -13,7 +13,6 @@ alias ..... 'cd ../../../..'
 alias ...... 'cd ../../../../..'
 
 alias br 'brew'
-alias brc 'brew cleanup'
 alias brd 'brew doctor'
 alias bri 'brew install'
 alias brl 'brew list'
