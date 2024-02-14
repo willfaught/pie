@@ -220,6 +220,14 @@ function giprbmn
   and git rebase main
 end
 
+function giprbsmn
+  set -l branch (git branch --show-current)
+  git checkout main
+  and git pull origin
+  and git checkout $branch
+  and git rebase --strategy-option theirs main
+end
+
 function git-rename
   for old_file in $argv[3..-1]
     set new_file (echo $old_file | perl -pe "s/$argv[1]/$argv[2]/")

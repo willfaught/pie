@@ -38,6 +38,7 @@
 	autoupdate = true
 [rerere]
 	enabled = true
+	autoupdate = true
 [user]
 	email = willfaught@users.noreply.github.com
 	name = Will Faught
