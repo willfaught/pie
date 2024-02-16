@@ -2,6 +2,7 @@
 
 set -gx EDITOR nvim
 set -gx GOPATH "$HOME/Library/Application Support/go"
+set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx PATH /opt/homebrew/bin /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin $GOPATH/bin
 
 # Aliases
