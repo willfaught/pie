@@ -221,7 +221,7 @@ function giprbmn
   and git rebase main
 end
 
-function giprbsmn
+function giprbtmn
   set -l branch (git branch --show-current)
   git checkout main
   and git pull origin
