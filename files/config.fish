@@ -48,6 +48,7 @@ alias dr 'docker'
 alias dig 'dig @8.8.8.8 +noall +answer +multiline'
 
 alias gia 'git add'
+alias giab 'git absorb'
 alias giax 'git add *'
 alias giap 'git add -p'
 alias giapx 'git add -p *'
