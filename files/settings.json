@@ -40,5 +40,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
         "editor.formatOnType": true
-    }
+    },
+    "git.openRepositoryInParentFolders": "never"
 }

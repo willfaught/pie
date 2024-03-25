@@ -311,6 +311,15 @@ function repeat
 end
 
 function replace
+  set text (cat $argv[3])
+  set text (string replace -a -r $argv[1] $argv[2] $text)
+  #set f (string escape --style=regex $argv[1])
+  #set t (string escape --style=regex $argv[2])
+  #sed -E -i '' -e "s/$f/$t/g" $argv[3]
+  printf $text
+end
+
+function replace-all
   find . ! -name .DS_Store -type f -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
 
