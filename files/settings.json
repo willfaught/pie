@@ -41,5 +41,7 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "git.openRepositoryInParentFolders": "never"
+    "git.openRepositoryInParentFolders": "never",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "evenBetterToml.schema.enabled": false
 }
