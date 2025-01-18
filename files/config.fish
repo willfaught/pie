@@ -186,6 +186,66 @@ alias vifl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; a
 
 # Functions
 
+function aws-s3-cat
+  set tmp (mktemp)
+  aws s3 cp $argv[1] $tmp >/dev/null
+  and cat $tmp
+  rm $tmp
+end
+
+function aws-s3-mirror
+  argparse 'f/from=' 't/to=' -- $argv
+  or return
+  if not set -q _flag_f
+    echo 'no from'
+    return 1
+  end
+  if not set -q _flag_t
+    echo 'no to'
+    return 1
+  end
+  set prefix (string replace -r '^s3://[^/]+/' '' $_flag_t)
+  set to_files (aws s3 ls --recursive $_flag_t | awk '{print $4}')
+  for to_file in $to_files
+    set suffix (string replace -r "^$prefix/" '' $to_file)
+    echo $suffix
+    if not aws s3 ls "$_flag_f/$suffix" >/dev/null
+      echo "to_file=$to_file"
+      echo "suffix=$suffix"
+      echo "from_file=$_flag_f/$suffix"
+      echo aws s3 rm $to_file
+    end
+  end
+end
+
+function aws-s3-new
+  set tmp (mktemp)
+  vi $tmp
+  and aws s3 cp $tmp $argv[1] >/dev/null
+  rm $tmp
+end
+
+function aws-s3-sync
+  argparse 'f/from=' 't/to=' 'b/backup=' -- $argv
+  or return
+  if not set -q _flag_f
+    echo 'no from'
+    return 1
+  end
+  if not set -q _flag_t
+    echo 'no to'
+    return 1
+  end
+  if not set -q _flag_b
+    echo 'no backup'
+    return 1
+  end
+  set now (date -u '+%Y-%m-%dT%H:%M:%SZ')
+  set suffix (echo $_flag_t | sed 's/s3:\/\///g')
+  aws s3 sync $_flag_t "$_flag_b/$now/$suffix"
+  and aws s3 sync $_flag_f $_flag_t
+end
+
 function cuj
   curl -Ss -H 'Accept: application/json' -H 'Content-Type: application/json' $argv | jq
 end
