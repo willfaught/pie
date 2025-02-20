@@ -168,6 +168,7 @@ end
 if $update
   report_step 'Updating software...'
   run "git -C '#{path_repo '.'}' pull origin master"
+  run "git -C ~/.config/nvim pull origin master"
   run 'brew upgrade'
   run 'brew cleanup'
   run 'fish -c "fisher update"'

@@ -11,7 +11,7 @@ Installing does this:
 3. **Files:** Soft links configuration files.
 4. **Directories:** Creates ~/Developer.
 5. **Terminal:** Installs a [VS Code Dark Plus](https://github.com/lysyi3m/macos-terminal-themes#vs-code-dark-plus-download) profile for Terminal, and makes it the default.
-6. **Software:** Installs [Homebrew](https://brew.sh) and various packages, [Fisher](https://github.com/jorgebucaran/fisher), [Pure](https://github.com/pure-fish/pure), and [Janus](https://github.com/carlhuda/janus). Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
+6. **Software:** Installs [Homebrew](https://brew.sh) and various packages, [Fisher](https://github.com/jorgebucaran/fisher), [Pure](https://github.com/pure-fish/pure), and [Whorl](https://github.com/willfaught/whorl). Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
 
 Steps are skipped if already done if possible. Conflicting files are backed up by renaming them.
 
@@ -20,9 +20,9 @@ Steps are skipped if already done if possible. Conflicting files are backed up b
 Updating does this:
 
 1. Updates this repository.
-2. Updates Homebrew.
-3. Updates Fisher.
-4. Updates Janus.
+2. Updates Whorl.
+3. Updates Homebrew.
+4. Updates Fisher.
 
 ## Usage
 
