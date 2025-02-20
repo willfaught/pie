@@ -171,7 +171,6 @@ if $update
   run 'brew upgrade'
   run 'brew cleanup'
   run 'fish -c "fisher update"'
-  run "sh -c 'cd \"#{path_home '.'}/.vim\" && rake'"
 
   if $failed
     report_bad 'Failed'
@@ -206,7 +205,6 @@ install 'files/.gitconfig', '.gitconfig'
 install 'files/ignore', '.config/git/ignore'
 install 'files/.hushlogin', '.hushlogin'
 install 'files/.inputrc', '.inputrc'
-install 'files/.vimrc.after', '.vimrc.after'
 install 'files/config.fish', '.config/fish/config.fish'
 install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
 
@@ -225,7 +223,7 @@ run "open '#{path_repo 'files/VS Code Dark Plus.terminal'}'"
 report_step 'Installing software...'
 
 # Homebrew
-run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless exists_file '/usr/local/bin/brew'
+run 'sh -c "curl -fsLS https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash"' unless run 'which brew'
 run "brew bundle --file='#{path_repo 'files/Brewfile'}'"
 run 'brew cleanup'
 run 'brew doctor'
@@ -235,10 +233,9 @@ run 'sudo chsh -s /usr/local/bin/fish $USER' if exists_file('/usr/local/bin/fish
 run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
 run 'fish -c "fisher install pure-fish/pure"'
 
-# Janus
-run 'sh -c "curl -fsLS https://bit.ly/janus-bootstrap | bash"' unless exists_dir '~/.vim'
-softlink('~/.config/nvim', '~/.vim')
-softlink('~/.config/nvim/init.vim', '~/.vimrc')
+# Whorl
+backup '~/.config/nvim'
+run 'git clone git@github.com:willfaught/whorl.git ~/.config/nvim'
 
 if $failed
   report_bad 'Failed'
