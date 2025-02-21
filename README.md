@@ -1,6 +1,6 @@
 # Pie
 
-Pie sets up a fresh Mac with preferences, configuration, and software.
+Pie sets up a fresh Mac with configuration and software.
 
 ## Installing
 
