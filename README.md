@@ -1,6 +1,6 @@
-# setup
+# Pie
 
-Setup sets up a fresh Mac with preferences, configuration, and software.
+Pie sets up a fresh Mac with preferences, configuration, and software.
 
 ## Installing
 
@@ -32,20 +32,20 @@ Updating does this:
     xcode-select --install
     ```
 
-2. Install Setup:
+2. Install Pie:
 
     ```bash
-    git clone https://github.com/willfaught/setup ~/Developer/setup
+    git clone https://github.com/willfaught/pie ~/Developer/pie
     ```
 
 3. Install Mac:
 
     ```bash
-    ~/Developer/setup/install --verbose
+    ~/Developer/pie/install --verbose
     ```
 
 4. Update Mac:
 
     ```bash
-    ~/Developer/setup/install --verbose --update
+    ~/Developer/pie/install --verbose --update
     ```
