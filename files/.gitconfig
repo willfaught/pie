@@ -14,7 +14,6 @@
 	autocrlf = input
 	pager = less -+F -+X
 	precomposeunicode = false
-	safecrlf = true
 	trustctime = false
 [diff]
 	colormoved = zebra
