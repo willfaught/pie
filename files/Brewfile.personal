@@ -1,5 +1,3 @@
 cask 'backblaze'
-cask 'google-chrome'
 cask 'kindle'
-cask 'slack'
 cask 'steam'
