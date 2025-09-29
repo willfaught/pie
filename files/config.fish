@@ -176,10 +176,9 @@ alias up3 'cd ../../..'
 alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
-alias vi 'nvim'
-
-alias vif 'nvim ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
-alias vifl 'nvim ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
+alias wr 'hx'
+alias wrf 'wr ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
+alias wrfl 'wr ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
 # Functions
 
