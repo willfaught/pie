@@ -207,6 +207,7 @@ install 'files/ignore', '.config/git/ignore'
 install 'files/.hushlogin', '.hushlogin'
 install 'files/.inputrc', '.inputrc'
 install 'files/config.fish', '.config/fish/config.fish'
+install 'files/config.toml', '.config/helix/config.toml'
 install 'files/settings.json', 'Library/Application Support/Code/User/settings.json'
 
 # Directories
