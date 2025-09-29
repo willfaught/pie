@@ -8,10 +8,13 @@
         "strings": "off"
     },
     "editor.renderFinalNewline": "off",
+    "evenBetterToml.schema.enabled": false,
     "explorer.openEditors.visible": 0,
     "explorer.sortOrderLexicographicOptions": "unicode",
     "files.insertFinalNewline": true,
     "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
+    "github.copilot.editor.enableAutoCompletions": true,
     "github.copilot.enable": {
         "*": true,
         "markdown": true,
@@ -40,8 +43,5 @@
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
         "editor.formatOnType": true
-    },
-    "git.openRepositoryInParentFolders": "never",
-    "github.copilot.editor.enableAutoCompletions": true,
-    "evenBetterToml.schema.enabled": false
+    }
 }
