@@ -167,6 +167,8 @@ alias mac-files-established 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep ESTABLI
 alias mac-files-listen 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep LISTEN'
 alias mac-pid-files 'sudo lsof -p'
 
+alias nv 'nvim'
+
 alias rgi 'rg -i'
 alias rgn 'rg --no-ignore'
 
