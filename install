@@ -236,8 +236,9 @@ run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebuc
 run 'fish -c "fisher install pure-fish/pure"'
 
 # Whorl
-backup '~/.config/nvim'
-run 'git clone git@github.com:willfaught/whorl.git ~/.config/nvim'
+unless exists_dir '~/.config/nvim'
+  run 'git clone --depth 1 https://github.com/willfaught/whorl ~/.config/nvim'
+end
 
 if $failed
   report_bad 'Failed'
