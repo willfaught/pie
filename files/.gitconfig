@@ -12,6 +12,7 @@
 	autosetuprebase = always
 [core]
 	autocrlf = input
+	editor = hx
 	pager = less -+F -+X
 	precomposeunicode = false
 	trustctime = false
