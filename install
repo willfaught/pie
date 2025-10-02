@@ -168,7 +168,7 @@ end
 if $update
   report_step 'Updating software...'
   run "git -C '#{path_repo '.'}' pull origin master"
-  run "git -C ~/.config/nvim fetch --depth 1 origin main"
+  run "git -C ~/.config/nvim fetch --depth 1 origin master"
   run 'brew upgrade'
   run 'brew cleanup'
   run 'fish -c "fisher update"'
@@ -235,9 +235,9 @@ run 'sudo chsh -s /usr/local/bin/fish $USER' if exists_file('/usr/local/bin/fish
 run 'fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"' unless exists_file '~/.config/fish/functions/fisher.fish'
 run 'fish -c "fisher install pure-fish/pure"'
 
-# Whorl
+# AstroNvim
 unless exists_dir '~/.config/nvim'
-  run 'git clone --depth 1 https://github.com/willfaught/whorl ~/.config/nvim'
+  run 'git clone --depth 1 https://github.com/willfaught/astronvim-config ~/.config/nvim'
 end
 
 if $failed
