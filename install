@@ -219,7 +219,7 @@ end
 
 # Terminal
 report_step 'Installing terminal...'
-run "open '#{path_repo 'files/VS Code Dark Plus.terminal'}'"
+run "open '#{path_repo 'files/Dark Plus.terminal'}'"
 
 # Software
 report_step 'Installing software...'
