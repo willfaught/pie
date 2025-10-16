@@ -2,8 +2,8 @@
 
 set -x
 
-defaults -currentHost write -g AppleKeyboardUIMode -int 2 # Enable full keyboard access for all controls
-defaults -currentHost write -g AppleShowAllExtensions -bool true # Show all filename extensions
+defaults write -g AppleKeyboardUIMode -int 2 # Enable full keyboard access for all controls
+defaults write -g AppleShowAllExtensions -bool true # Show all filename extensions
 
 defaults -currentHost write com.apple.Safari AutoFillCreditCardData -bool false # Disable AutoFill
 defaults -currentHost write com.apple.Safari AutoFillFromAddressBook -bool false # Disable AutoFill
