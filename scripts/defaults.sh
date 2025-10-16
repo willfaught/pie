@@ -2,17 +2,17 @@
 
 set -x
 
-defaults -currentHost write NSGlobalDomain AppleKeyboardUIMode -int 2 # Enable full keyboard access for all controls
-defaults -currentHost write NSGlobalDomain AppleShowAllExtensions -bool true # Show all filename extensions
-defaults -currentHost write NSGlobalDomain InitialKeyRepeat -int 15 # Repeat held keys quickly
-defaults -currentHost write NSGlobalDomain KeyRepeat -int 2 # Repeat held keys
-defaults -currentHost write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false # Disable capitalize words automatically
-defaults -currentHost write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false # Disable smart dashes
-defaults -currentHost write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false # Disable add period with double space
-defaults -currentHost write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false # Disable smart quotes
-defaults -currentHost write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false # Disable correct spelling automatically
-defaults -currentHost write NSGlobalDomain NSCloseAlwaysConfirmsChanges -bool true # System Preferences -> General -> Ask to keep changes when closing documents
-defaults -currentHost write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true # System Preferences -> General -> Close windows when quitting an app
+defaults -currentHost write -g AppleKeyboardUIMode -int 2 # Enable full keyboard access for all controls
+defaults -currentHost write -g AppleShowAllExtensions -bool true # Show all filename extensions
+defaults -currentHost write -g InitialKeyRepeat -int 15 # Repeat held keys quickly
+defaults -currentHost write -g KeyRepeat -int 2 # Repeat held keys
+defaults -currentHost write -g NSAutomaticCapitalizationEnabled -bool false # Disable capitalize words automatically
+defaults -currentHost write -g NSAutomaticDashSubstitutionEnabled -bool false # Disable smart dashes
+defaults -currentHost write -g NSAutomaticPeriodSubstitutionEnabled -bool false # Disable add period with double space
+defaults -currentHost write -g NSAutomaticQuoteSubstitutionEnabled -bool false # Disable smart quotes
+defaults -currentHost write -g NSAutomaticSpellingCorrectionEnabled -bool false # Disable correct spelling automatically
+defaults -currentHost write -g NSCloseAlwaysConfirmsChanges -bool true # System Preferences -> General -> Ask to keep changes when closing documents
+defaults -currentHost write -g NSQuitAlwaysKeepsWindows -bool true # System Preferences -> General -> Close windows when quitting an app
 
 defaults -currentHost write com.apple.Safari AutoFillCreditCardData -bool false # Disable AutoFill
 defaults -currentHost write com.apple.Safari AutoFillFromAddressBook -bool false # Disable AutoFill
