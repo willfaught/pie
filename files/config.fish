@@ -13,7 +13,7 @@ alias .... 'cd ../../..'
 alias ..... 'cd ../../../..'
 alias ...... 'cd ../../../../..'
 
-alias br 'brew'
+alias br brew
 alias brd 'brew doctor'
 alias bri 'brew install'
 alias brl 'brew list'
@@ -32,15 +32,15 @@ alias cd...... 'cd ../../../../..'
 
 alias cdd "cd $HOME/Developer"
 
-alias cl 'clear'
+alias cl clear
 
 alias cp 'cp -i'
 
 alias cu 'curl --show-error --silent'
 
-alias diff 'colordiff'
+alias diff colordiff
 
-alias dr 'docker'
+alias dr docker
 
 alias dig 'dig @8.8.8.8 +noall +answer +multiline'
 
@@ -137,17 +137,17 @@ alias gotv 'go test -v ./...'
 
 alias gore 'gore -autoimport'
 
-alias hi 'history'
+alias hi history
 
-alias jo 'jobs'
+alias jo jobs
 
-alias kc 'kubectl'
+alias kc kubectl
 alias kcd 'kubectl describe'
 alias kcg 'kubectl get'
 alias kcl 'kubectl logs'
 alias kcr 'kubectl run'
-alias kn 'kubens'
-alias kx 'kubectx'
+alias kn kubens
+alias kx kubectx
 
 alias lsa 'ls -A'
 alias lsal 'ls -Ahl'
@@ -155,7 +155,7 @@ alias lsl 'ls -hl'
 
 alias ln 'ln -i'
 
-alias mk 'make'
+alias mk make
 
 alias mkdir 'mkdir -p'
 
@@ -167,7 +167,7 @@ alias mac-files-established 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep ESTABLI
 alias mac-files-listen 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep LISTEN'
 alias mac-pid-files 'sudo lsof -p'
 
-alias nv 'nvim'
+alias nv nvim
 
 alias rgi 'rg -i'
 alias rgn 'rg --no-ignore'
@@ -178,211 +178,211 @@ alias up3 'cd ../../..'
 alias up4 'cd ../../../..'
 alias up5 'cd ../../../../..'
 
-alias wr 'hx'
+alias wr hx
 alias wrf 'wr ~/.config/fish/config.fish; test -r ~/.config/fish/config.fish; and source ~/.config/fish/config.fish; true'
 alias wrfl 'wr ~/.config/fish/local.fish; test -r ~/.config/fish/local.fish; and source ~/.config/fish/local.fish; true'
 
 # Functions
 
 function aws-s3-cat
-  set tmp (mktemp)
-  aws s3 cp $argv[1] $tmp >/dev/null
-  and cat $tmp
-  rm $tmp
+    set tmp (mktemp)
+    aws s3 cp $argv[1] $tmp >/dev/null
+    and cat $tmp
+    rm $tmp
 end
 
 function aws-s3-mirror
-  argparse 'f/from=' 't/to=' -- $argv
-  or return
-  if not set -q _flag_f
-    echo 'no from'
-    return 1
-  end
-  if not set -q _flag_t
-    echo 'no to'
-    return 1
-  end
-  set prefix (string replace -r '^s3://[^/]+/' '' $_flag_t)
-  set to_files (aws s3 ls --recursive $_flag_t | awk '{print $4}')
-  for to_file in $to_files
-    set suffix (string replace -r "^$prefix/" '' $to_file)
-    echo $suffix
-    if not aws s3 ls "$_flag_f/$suffix" >/dev/null
-      echo "to_file=$to_file"
-      echo "suffix=$suffix"
-      echo "from_file=$_flag_f/$suffix"
-      echo aws s3 rm $to_file
+    argparse 'f/from=' 't/to=' -- $argv
+    or return
+    if not set -q _flag_f
+        echo 'no from'
+        return 1
     end
-  end
+    if not set -q _flag_t
+        echo 'no to'
+        return 1
+    end
+    set prefix (string replace -r '^s3://[^/]+/' '' $_flag_t)
+    set to_files (aws s3 ls --recursive $_flag_t | awk '{print $4}')
+    for to_file in $to_files
+        set suffix (string replace -r "^$prefix/" '' $to_file)
+        echo $suffix
+        if not aws s3 ls "$_flag_f/$suffix" >/dev/null
+            echo "to_file=$to_file"
+            echo "suffix=$suffix"
+            echo "from_file=$_flag_f/$suffix"
+            echo aws s3 rm $to_file
+        end
+    end
 end
 
 function aws-s3-new
-  set tmp (mktemp)
-  vi $tmp
-  and aws s3 cp $tmp $argv[1] >/dev/null
-  rm $tmp
+    set tmp (mktemp)
+    vi $tmp
+    and aws s3 cp $tmp $argv[1] >/dev/null
+    rm $tmp
 end
 
 function aws-s3-sync
-  argparse 'f/from=' 't/to=' 'b/backup=' -- $argv
-  or return
-  if not set -q _flag_f
-    echo 'no from'
-    return 1
-  end
-  if not set -q _flag_t
-    echo 'no to'
-    return 1
-  end
-  if not set -q _flag_b
-    echo 'no backup'
-    return 1
-  end
-  set now (date -u '+%Y-%m-%dT%H:%M:%SZ')
-  set suffix (echo $_flag_t | sed 's/s3:\/\///g')
-  aws s3 sync $_flag_t "$_flag_b/$now/$suffix"
-  and aws s3 sync $_flag_f $_flag_t
+    argparse 'f/from=' 't/to=' 'b/backup=' -- $argv
+    or return
+    if not set -q _flag_f
+        echo 'no from'
+        return 1
+    end
+    if not set -q _flag_t
+        echo 'no to'
+        return 1
+    end
+    if not set -q _flag_b
+        echo 'no backup'
+        return 1
+    end
+    set now (date -u '+%Y-%m-%dT%H:%M:%SZ')
+    set suffix (echo $_flag_t | sed 's/s3:\/\///g')
+    aws s3 sync $_flag_t "$_flag_b/$now/$suffix"
+    and aws s3 sync $_flag_f $_flag_t
 end
 
 function cuj
-  curl -Ss -H 'Accept: application/json' -H 'Content-Type: application/json' $argv | jq
+    curl -Ss -H 'Accept: application/json' -H 'Content-Type: application/json' $argv | jq
 end
 
 function gibdrbm
-  git checkout master
-  and git pull origin
-  and git checkout $argv[1]
-  and git rebase master
-  and git checkout master
-  and git branch -d $argv[1]
+    git checkout master
+    and git pull origin
+    and git checkout $argv[1]
+    and git rebase master
+    and git checkout master
+    and git branch -d $argv[1]
 end
 
 function gibdrbmn
-  git checkout main
-  and git pull origin
-  and git checkout $argv[1]
-  and git rebase main
-  and git checkout main
-  and git branch -d $argv[1]
+    git checkout main
+    and git pull origin
+    and git checkout $argv[1]
+    and git rebase main
+    and git checkout main
+    and git branch -d $argv[1]
 end
 
 function giprbm
-  set -l branch (git branch --show-current)
-  git checkout master
-  and git pull origin
-  and git checkout $branch
-  and git rebase master
+    set -l branch (git branch --show-current)
+    git checkout master
+    and git pull origin
+    and git checkout $branch
+    and git rebase master
 end
 
 function giprbmn
-  set -l branch (git branch --show-current)
-  git checkout main
-  and git pull origin
-  and git checkout $branch
-  and git rebase main
+    set -l branch (git branch --show-current)
+    git checkout main
+    and git pull origin
+    and git checkout $branch
+    and git rebase main
 end
 
 function giprbtmn
-  set -l branch (git branch --show-current)
-  git checkout main
-  and git pull origin
-  and git checkout $branch
-  and git rebase --strategy-option theirs main
+    set -l branch (git branch --show-current)
+    git checkout main
+    and git pull origin
+    and git checkout $branch
+    and git rebase --strategy-option theirs main
 end
 
 function git-rename
-  for old_file in $argv[3..-1]
-    set new_file (echo $old_file | perl -pe "s/$argv[1]/$argv[2]/")
-    if test $old_file != $new_file
-      git mv $old_file $new_file
+    for old_file in $argv[3..-1]
+        set new_file (echo $old_file | perl -pe "s/$argv[1]/$argv[2]/")
+        if test $old_file != $new_file
+            git mv $old_file $new_file
+        end
     end
-  end
 end
 
 function kcrp
-  kubectl run -i -t --image $argv[1] --restart Never --rm $argv[2]
+    kubectl run -i -t --image $argv[1] --restart Never --rm $argv[2]
 end
 
 function lines-drop
-  sed -E "1,$argv[1]d"
+    sed -E "1,$argv[1]d"
 end
 
 function lines-drop-if
-  egrep -v $argv[1]
+    egrep -v $argv[1]
 end
 
 function lines-drop-last
-  sed -E -n -e :a -e "1,$argv[1]!{P;N;D;};N;ba"
+    sed -E -n -e :a -e "1,$argv[1]!{P;N;D;};N;ba"
 end
 
 function lines-drop-while
-  awk "{ if (\$0 !~ /$argv[1]/) start = 1; if (start) print \$0; }"
+    awk "{ if (\$0 !~ /$argv[1]/) start = 1; if (start) print \$0; }"
 end
 
 function lines-take
-  head -n $argv[1]
+    head -n $argv[1]
 end
 
 function lines-take-if
-  egrep $argv[1]
+    egrep $argv[1]
 end
 
 function lines-take-last
-  tail -n $argv[1]
+    tail -n $argv[1]
 end
 
 function lines-take-while
-  sed -E -n "/$argv[1]/p;/$argv[1]/!q"
+    sed -E -n "/$argv[1]/p;/$argv[1]/!q"
 end
 
 function mac-port-cmds
-  lsof -Pn -iTCP:$argv[1]
+    lsof -Pn -iTCP:$argv[1]
 end
 
 function mac-temp-cpu
-  sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'CPU die temperature' | cut -d ' ' -f 4,5
+    sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'CPU die temperature' | cut -d ' ' -f 4,5
 end
 
 function mac-temp-gpu
-  sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
+    sudo powermetrics --samplers smc -i 1 -n 1 | grep -i 'GPU die temperature' | cut -d ' ' -f 4,5
 end
 
 function rename
-  for old_file in $argv[3..-1]
-    set new_file (echo $old_file | perl -pe "s/$argv[1]/$argv[2]/")
-    if test $old_file != $new_file
-      mv $old_file $new_file
+    for old_file in $argv[3..-1]
+        set new_file (echo $old_file | perl -pe "s/$argv[1]/$argv[2]/")
+        if test $old_file != $new_file
+            mv $old_file $new_file
+        end
     end
-  end
 end
 
 function repeat
-  argparse -n repeat 'n=' -- $argv
-  or return
-  if set -q _flag_n
-    for x in (seq 1 $_flag_n)
-      $argv
+    argparse -n repeat 'n=' -- $argv
+    or return
+    if set -q _flag_n
+        for x in (seq 1 $_flag_n)
+            $argv
+        end
+    else
+        while true
+            $argv
+        end
     end
-  else
-    while true
-      $argv
-    end
-  end
 end
 
 function replace
-  find . ! -name .DS_Store -type f -exec grep -Iq . {} \; -and -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
+    find . ! -name .DS_Store -type f -exec grep -Iq . {} \; -and -exec sed -E -i '' -e "s/$argv[1]/$argv[2]/g" {} \;
 end
 
 function search
-  rg -e $argv[1] $argv[2..-1]
+    rg -e $argv[1] $argv[2..-1]
 end
 
 function up
-  cd ..
-  while test (pwd) != "/"; and test (basename (pwd)) != $argv[1]
     cd ..
-  end
+    while test (pwd) != /; and test (basename (pwd)) != $argv[1]
+        cd ..
+    end
 end
 
 # Local
