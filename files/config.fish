@@ -166,6 +166,7 @@ alias mac-dir-pids 'sudo lsof +d'
 alias mac-files-established 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep ESTABLISHED'
 alias mac-files-listen 'lsof -P -i4 | head -n 1; lsof -P -i4 | grep LISTEN'
 alias mac-pid-files 'sudo lsof -p'
+alias mac-refresh-devices 'killall diskarbitrationd'
 
 alias nv nvim
 
