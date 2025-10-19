@@ -4,6 +4,7 @@ set -x
 
 defaults write -g AppleKeyboardUIMode -int 2 # Enable full keyboard access for all controls
 defaults write -g AppleShowAllExtensions -bool true # Show all filename extensions
+defaults write -g NSCloseAlwaysConfirmsChanges -bool true # System Settings -> Desktop & Dock -> Windows -> Ask to keep changes when closing documents
 
 defaults -currentHost write com.apple.applemultitouchtrackpad Clicking -bool true # System Preferences -> Trackpad -> Point & Click -> Tap to click
 
