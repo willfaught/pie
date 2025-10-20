@@ -24,7 +24,7 @@ defaults write com.apple.dock wvous-bl-corner -int 2 # macOS 26 -> System Settin
 defaults write com.apple.dock wvous-br-corner -int 10 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Right] -> Put Display to Sleep
 
 defaults write com.apple.finder FXDefaultSearchScope -string 'SCcf' # macOS 26 -> Finder Settings -> Advanced -> When performing a search -> Search the Current Folder
-defaults write com.apple.finder FXPreferredViewStyle -string 'clmv' # Use column view
+defaults write com.apple.finder FXPreferredViewStyle -string 'clmv' # Use the column view
 defaults write com.apple.finder NewWindowTarget -string 'PfHm' # macOS 26 -> Finder Settings -> General -> New Finder windows show -> [Home]
 defaults write com.apple.finder NewWindowTargetPath -string 'file://${HOME}/' # macOS 26 -> Finder Settings -> General -> New Finder windows show -> [Home]
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false # macOS 26 -> Finder Settings -> General -> Show these items on the desktop -> External disks
