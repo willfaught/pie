@@ -12,6 +12,7 @@ defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool true # macOS 26 -> S
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Correct spelling automatically
 defaults write -g NSCloseAlwaysConfirmsChanges -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Windows -> Ask to keep changes when closing documents
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Windows -> Close windows when quitting an application
+defaults write -g NSSmartReplyEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Show suggested replies
 
 defaults -currentHost write com.apple.applemultitouchtrackpad Clicking -bool true # System Preferences -> Trackpad -> Point & Click -> Tap to click
 
