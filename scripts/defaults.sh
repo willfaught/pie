@@ -6,6 +6,7 @@ defaults write -g AppleKeyboardUIMode -int 2 # macOS 26 -> Enable full keyboard 
 defaults write -g AppleShowAllExtensions -bool true # macOS 26 -> Show all filename extensions
 defaults write -g InitialKeyRepeat -int 15 # macOS 26 -> System Settings -> Keyboard -> Delay until repeat
 defaults write -g KeyRepeat -int 2 # macOS 26 -> System Settings -> Keyboard -> Key repeat rate
+defaults write -g NSAutomaticInlinePredictionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Show inline predictive text
 defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Add period with double-space
 defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Use smart quotes and dashes
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Correct spelling automatically
