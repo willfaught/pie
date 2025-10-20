@@ -15,13 +15,13 @@ defaults write -g NSCloseAlwaysConfirmsChanges -bool true # macOS 26 -> System S
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Windows -> Close windows when quitting an application
 defaults write -g NSSmartReplyEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Show suggested replies
 
-defaults write com.apple.dock autohide -bool true # Automatically hide and show the dock
-defaults write com.apple.dock expose-group-apps -bool false # Don't group windows by app in Expose
-defaults write com.apple.dock mru-spaces -bool false # Don't automatically rearrange spaces based on most recent use
+defaults write com.apple.dock autohide -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Dock -> Automatically hide and show the Dock
+defaults write com.apple.dock expose-group-apps -bool false # macOS 26 -> System Settings -> Desktop & Dock -> Mission Control -> Group windows by application
+defaults write com.apple.dock mru-spaces -bool false # macOS 26 -> System Settings -> Desktop & Dock -> Mission Control -> Automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock persistent-apps -array # Wipe all default app icons from the dock
-defaults write com.apple.dock tilesize -int 36 # Dock icon size is 36 pixels
-defaults write com.apple.dock wvous-bl-corner -int 2 # Bottom left screen corner opens Mission Control
-defaults write com.apple.dock wvous-br-corner -int 10 # Bottom right screen corner puts the display to sleep
+defaults write com.apple.dock tilesize -int 36 # macOS 26 -> System Settings -> Desktop & Dock -> Dock -> Size
+defaults write com.apple.dock wvous-bl-corner -int 2 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Left] -> Mission Control
+defaults write com.apple.dock wvous-br-corner -int 10 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Right] -> Put Display to Sleep
 
 defaults -currentHost write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
 defaults -currentHost write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
