@@ -15,8 +15,6 @@ defaults write -g NSCloseAlwaysConfirmsChanges -bool true # macOS 26 -> System S
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Windows -> Close windows when quitting an application
 defaults write -g NSSmartReplyEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Show suggested replies
 
-defaults -currentHost write com.apple.applemultitouchtrackpad Clicking -bool true # System Preferences -> Trackpad -> Point & Click -> Tap to click
-
 defaults -currentHost write com.apple.dock autohide -bool true # Automatically hide and show the dock
 defaults -currentHost write com.apple.dock expose-group-apps -bool false # Don't group windows by app in Expose
 defaults -currentHost write com.apple.dock mru-spaces -bool false # Don't automatically rearrange spaces based on most recent use
