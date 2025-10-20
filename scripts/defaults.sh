@@ -23,7 +23,6 @@ defaults write com.apple.dock tilesize -int 36 # macOS 26 -> System Settings -> 
 defaults write com.apple.dock wvous-bl-corner -int 2 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Left] -> Mission Control
 defaults write com.apple.dock wvous-br-corner -int 10 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Right] -> Put Display to Sleep
 
-defaults write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
 defaults write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
 defaults write com.apple.finder FXPreferredViewStyle -string 'clmv' # Use column view
 defaults write com.apple.finder NewWindowTarget -string 'PfHm' # Start new windows at the home directory
@@ -31,6 +30,7 @@ defaults write com.apple.finder NewWindowTargetPath -string 'file://${HOME}/' # 
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false # Hide external hard drives on the desktop
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false # Hide removable media on the desktop
 defaults write com.apple.finder ShowStatusBar -bool true # Show the status bar
+defaults write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
 
 defaults write com.apple.menuextra.clock DateFormat -string 'EEE d MMM h:mm a' # Show month and day in clock
 
@@ -47,9 +47,9 @@ defaults write com.apple.safari WebKitTabToLinksPreferenceKey -bool true # Press
 
 defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.saver'
 
-defaults write com.apple.terminal ShowLineMarks -bool false # Hide line marks
 defaults write com.apple.terminal 'Default Window Settings' -string 'Dark Plus' # Default profile
 defaults write com.apple.terminal 'Startup Window Settings' -string 'Dark Plus' # Default profile
+defaults write com.apple.terminal ShowLineMarks -bool false # Hide line marks
 
 killall Dock
 killall Finder
