@@ -23,31 +23,31 @@ defaults write com.apple.dock tilesize -int 36 # macOS 26 -> System Settings -> 
 defaults write com.apple.dock wvous-bl-corner -int 2 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Left] -> Mission Control
 defaults write com.apple.dock wvous-br-corner -int 10 # macOS 26 -> System Settings -> Desktop & Dock -> Hot Corners -> [Bottom Right] -> Put Display to Sleep
 
-defaults -currentHost write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
-defaults -currentHost write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
-defaults -currentHost write com.apple.finder FXPreferredViewStyle -string 'clmv' # Use column view
-defaults -currentHost write com.apple.finder NewWindowTarget -string 'PfHm' # Start new windows at the home directory
-defaults -currentHost write com.apple.finder NewWindowTargetPath -string 'file://${HOME}/' # Start new windows at the home directory
-defaults -currentHost write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false # Hide external hard drives on the desktop
-defaults -currentHost write com.apple.finder ShowRemovableMediaOnDesktop -bool false # Hide removable media on the desktop
-defaults -currentHost write com.apple.finder ShowStatusBar -bool true # Show the status bar
+defaults write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
+defaults write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
+defaults write com.apple.finder FXPreferredViewStyle -string 'clmv' # Use column view
+defaults write com.apple.finder NewWindowTarget -string 'PfHm' # Start new windows at the home directory
+defaults write com.apple.finder NewWindowTargetPath -string 'file://${HOME}/' # Start new windows at the home directory
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false # Hide external hard drives on the desktop
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false # Hide removable media on the desktop
+defaults write com.apple.finder ShowStatusBar -bool true # Show the status bar
 
 defaults write com.apple.menuextra.clock DateFormat -string 'EEE d MMM h:mm a' # Show month and day in clock
 
-defaults -currentHost write com.apple.safari AutoFillCreditCardData -bool false # Disable AutoFill
-defaults -currentHost write com.apple.safari AutoFillFromAddressBook -bool false # Disable AutoFill
-defaults -currentHost write com.apple.safari AutoFillMiscellaneousForms -bool false # Disable AutoFill
-defaults -currentHost write com.apple.safari AutoFillPasswords -bool false # Disable AutoFill
-defaults -currentHost write com.apple.safari AutoOpenSafeDownloads -bool false # Don't open safe downloaded files automatically
-defaults -currentHost write com.apple.safari IncludeDevelopMenu -bool true # Show the Develop menu
-defaults -currentHost write com.apple.safari SendDoNotTrackHTTPHeader -bool true # Enable Do Not Track
-defaults -currentHost write com.apple.safari ShowFullURLInSmartSearchField -bool true # Show the full URL in the address bar
-defaults -currentHost write com.apple.safari ShowIconsInTabs -bool true # Show favicons in tabs
-defaults -currentHost write com.apple.safari WebKitTabToLinksPreferenceKey -bool true # Press tab to highlight each item on a web page
+defaults write com.apple.safari AutoFillCreditCardData -bool false # Disable AutoFill
+defaults write com.apple.safari AutoFillFromAddressBook -bool false # Disable AutoFill
+defaults write com.apple.safari AutoFillMiscellaneousForms -bool false # Disable AutoFill
+defaults write com.apple.safari AutoFillPasswords -bool false # Disable AutoFill
+defaults write com.apple.safari AutoOpenSafeDownloads -bool false # Don't open safe downloaded files automatically
+defaults write com.apple.safari IncludeDevelopMenu -bool true # Show the Develop menu
+defaults write com.apple.safari SendDoNotTrackHTTPHeader -bool true # Enable Do Not Track
+defaults write com.apple.safari ShowFullURLInSmartSearchField -bool true # Show the full URL in the address bar
+defaults write com.apple.safari ShowIconsInTabs -bool true # Show favicons in tabs
+defaults write com.apple.safari WebKitTabToLinksPreferenceKey -bool true # Press tab to highlight each item on a web page
 
 defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.saver'
 
-defaults -currentHost write com.apple.terminal ShowLineMarks -bool false # Hide line marks
+defaults write com.apple.terminal ShowLineMarks -bool false # Hide line marks
 defaults write com.apple.terminal 'Default Window Settings' -string 'Dark Plus' # Default profile
 defaults write com.apple.terminal 'Startup Window Settings' -string 'Dark Plus' # Default profile
 
