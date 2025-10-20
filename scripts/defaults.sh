@@ -48,8 +48,8 @@ defaults -currentHost write com.apple.safari WebKitTabToLinksPreferenceKey -bool
 defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.saver'
 
 defaults -currentHost write com.apple.terminal ShowLineMarks -bool false # Hide line marks
-defaults write com.apple.terminal 'Default Window Settings' -string 'VS Code Dark Plus' # Default profile
-defaults write com.apple.terminal 'Startup Window Settings' -string 'VS Code Dark Plus' # Default profile
+defaults write com.apple.terminal 'Default Window Settings' -string 'Dark Plus' # Default profile
+defaults write com.apple.terminal 'Startup Window Settings' -string 'Dark Plus' # Default profile
 
 killall Dock
 killall Finder
