@@ -42,7 +42,6 @@ defaults write com.apple.safari AutoOpenSafeDownloads -bool false # Safari Setti
 defaults write com.apple.safari IncludeDevelopMenu -bool true # Safari Settings -> Advanced -> Show features for web developers
 defaults write com.apple.safari SendDoNotTrackHTTPHeader -bool true # Safari Settings -> Privacy -> Website tracking -> Prevent cross-site tracking
 defaults write com.apple.safari ShowFullURLInSmartSearchField -bool true # Safari Settings -> Advanced -> Show full website address
-defaults write com.apple.safari ShowIconsInTabs -bool true # Show favicons in tabs
 defaults write com.apple.safari WebKitTabToLinksPreferenceKey -bool true # Safari Settings -> Advanced -> Press Tab to highlight each item on a webpage
 
 defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.saver'
