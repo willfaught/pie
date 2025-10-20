@@ -4,8 +4,8 @@ set -x
 
 defaults write -g AppleKeyboardUIMode -int 2 # Enable full keyboard access for all controls
 defaults write -g AppleShowAllExtensions -bool true # Show all filename extensions
-defaults write -g InitialKeyRepeat -int 15 # System Settings -> Keyboard -> Delay until repeat
-defaults write -g KeyRepeat -int 2 # System Settings -> Keyboard -> Key repeat rate
+defaults write -g InitialKeyRepeat -int 15 # macOS 26 -> System Settings -> Keyboard -> Delay until repeat
+defaults write -g KeyRepeat -int 2 # macOS 26 -> System Settings -> Keyboard -> Key repeat rate
 defaults write -g NSCloseAlwaysConfirmsChanges -bool true # System Settings -> Desktop & Dock -> Windows -> Ask to keep changes when closing documents
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # System Settings -> Desktop & Dock -> Windows -> Close windows when quitting an application
 
