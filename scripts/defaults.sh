@@ -7,6 +7,7 @@ defaults write -g AppleShowAllExtensions -bool true # macOS 26 -> Show all filen
 defaults write -g InitialKeyRepeat -int 15 # macOS 26 -> System Settings -> Keyboard -> Delay until repeat
 defaults write -g KeyRepeat -int 2 # macOS 26 -> System Settings -> Keyboard -> Key repeat rate
 defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Add period with double-space
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Use smart quotes and dashes
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool true # macOS 26 -> System Settings -> Keyboard -> Text Input -> [Input Source] -> Correct spelling automatically
 defaults write -g NSCloseAlwaysConfirmsChanges -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Windows -> Ask to keep changes when closing documents
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # macOS 26 -> System Settings -> Desktop & Dock -> Windows -> Close windows when quitting an application
