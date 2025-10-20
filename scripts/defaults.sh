@@ -19,12 +19,9 @@ defaults write com.apple.dock autohide -bool true # Automatically hide and show 
 defaults write com.apple.dock expose-group-apps -bool false # Don't group windows by app in Expose
 defaults write com.apple.dock mru-spaces -bool false # Don't automatically rearrange spaces based on most recent use
 defaults write com.apple.dock persistent-apps -array # Wipe all default app icons from the dock
-defaults write com.apple.dock showAppExposeGestureEnabled -bool true # System Preferences -> Trackpad -> More Gestures -> App Expose
 defaults write com.apple.dock tilesize -int 36 # Dock icon size is 36 pixels
 defaults write com.apple.dock wvous-bl-corner -int 2 # Bottom left screen corner opens Mission Control
 defaults write com.apple.dock wvous-br-corner -int 10 # Bottom right screen corner puts the display to sleep
-
-defaults -currentHost write com.apple.driver.applebluetoothmultitouch.trackpad Clicking -bool true # System Preferences -> Trackpad -> Point & Click -> Tap to click
 
 defaults -currentHost write com.apple.finder _FXSortFoldersFirst -bool true # Order folders first when sorting by name
 defaults -currentHost write com.apple.finder FXDefaultSearchScope -string 'SCcf' # Search the current folder
