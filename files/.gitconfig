@@ -32,9 +32,11 @@
 [init]
 	defaultbranch = master
 [pull]
+	autostash = true
 	rebase = true
 [rebase]
 	autosquash = true
+	autostash = true
 	autoupdate = true
 [rerere]
 	enabled = true
