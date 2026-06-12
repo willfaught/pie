@@ -379,6 +379,12 @@ function search
     rg -e $argv[1] $argv[2..-1]
 end
 
+function trim-suffix
+    set str $argv[1]
+    set suffix $argv[2]
+    string replace -r (string escape --style=regex "$suffix")'$' '' -- $str
+end
+
 function up
     cd ..
     while test (pwd) != /; and test (basename (pwd)) != $argv[1]
