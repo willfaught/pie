@@ -16,9 +16,9 @@
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.editor.enableAutoCompletions": true,
     "github.copilot.enable": {
-        "*": true,
-        "markdown": true,
+        "*": false,
         "plaintext": false,
+        "markdown": false,
         "scminput": false
     },
     "go.buildTags": "integration",
@@ -43,5 +43,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
         "editor.formatOnType": true
-    }
+    },
+    "github.copilot.nextEditSuggestions.enabled": false
 }
