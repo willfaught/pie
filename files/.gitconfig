@@ -10,6 +10,7 @@
 	pull-all = "!git pull origin master; git submodule foreach git pull origin master"
 [branch]
 	autosetuprebase = always
+	sort = -committerdate
 [core]
 	autocrlf = input
 	editor = hx
@@ -17,12 +18,16 @@
 	precomposeunicode = false
 	trustctime = false
 [diff]
-	colormoved = zebra
-	renames = copies
+	colormoved = plain
+	renames = true
+	algorithm = histogram
+	mnemonicprefix = true
 [diff "bin"]
 	textconv = hexdump -v -C
 [fetch]
 	prune = true
+	prunetags = true
+	all = true
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -38,6 +43,7 @@
 	autosquash = true
 	autostash = true
 	autoupdate = true
+	updaterefs = true
 [rerere]
 	enabled = true
 	autoupdate = true
@@ -54,3 +60,12 @@
 	smudge = git-lfs smudge -- %f
 [advice]
 	skippedcherrypicks = false
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
+[push]
+	autosetupremote = true
+	followtags = true
+[merge]
+	conflictstyle = zdiff3
