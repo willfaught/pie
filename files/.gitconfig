@@ -1,3 +1,5 @@
+[advice]
+	skippedcherrypicks = false
 [alias]
 	code-commits = "!f() { git log --pretty=format:'%C(yellow)%h%Cblue%ad%Creset%s%Cgreen[%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 	commit-all = "!git add -A && git commit -av"
@@ -11,6 +13,8 @@
 [branch]
 	autosetuprebase = always
 	sort = -committerdate
+[column]
+	ui = auto
 [core]
 	autocrlf = input
 	editor = hx
@@ -28,6 +32,11 @@
 	all = true
 	prune = true
 	prunetags = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -36,9 +45,14 @@
 	path = ~/.gitconfig.local
 [init]
 	defaultbranch = master
+[merge]
+	conflictstyle = zdiff3
 [pull]
 	autostash = true
 	rebase = true
+[push]
+	autosetupremote = true
+	followtags = true
 [rebase]
 	autosquash = true
 	autostash = true
@@ -47,25 +61,11 @@
 [rerere]
 	autoupdate = true
 	enabled = true
+[tag]
+	sort = version:refname
 [url "git@github.com:"]
 	insteadof = https://github.com/
 [user]
 	email = willfaught@users.noreply.github.com
 	name = Will Faught
 	signingkey = /Users/will/.ssh/id_rsa.pub
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	process = git-lfs filter-process
-	required = true
-	smudge = git-lfs smudge -- %f
-[advice]
-	skippedcherrypicks = false
-[column]
-	ui = auto
-[tag]
-	sort = version:refname
-[push]
-	autosetupremote = true
-	followtags = true
-[merge]
-	conflictstyle = zdiff3
