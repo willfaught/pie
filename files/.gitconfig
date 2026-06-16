@@ -48,7 +48,7 @@
 	autoupdate = true
 	enabled = true
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	insteadof = https://github.com/
 [user]
 	email = willfaught@users.noreply.github.com
 	name = Will Faught
