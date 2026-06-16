@@ -18,16 +18,16 @@
 	precomposeunicode = false
 	trustctime = false
 [diff]
-	colormoved = plain
-	renames = true
 	algorithm = histogram
+	colormoved = plain
 	mnemonicprefix = true
+	renames = true
 [diff "bin"]
 	textconv = hexdump -v -C
 [fetch]
+	all = true
 	prune = true
 	prunetags = true
-	all = true
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -45,8 +45,8 @@
 	autoupdate = true
 	updaterefs = true
 [rerere]
-	enabled = true
 	autoupdate = true
+	enabled = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [user]
