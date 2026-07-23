@@ -44,5 +44,6 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "github.copilot.nextEditSuggestions.enabled": false
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "workbench.experimental.modernUI": true
 }
