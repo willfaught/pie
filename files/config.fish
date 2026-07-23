@@ -357,6 +357,18 @@ function rename
     end
 end
 
+function rename-checksum
+    for old in *
+        set sum (shasum $old | awk '{print $1}')
+        set ext (string split -r -m1 . (basename $old))[2]
+        set new "$sum.$ext"
+        if not test $old = $new
+            echo "$old: moved to $new"
+            /bin/mv $old $new
+        end
+    end
+end
+
 function repeat
     argparse -n repeat 'n=' -- $argv
     or return
