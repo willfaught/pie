@@ -26,7 +26,7 @@ Updating does this:
 
 ## Usage
 
-1. Install Git:
+1. Install Xcode:
 
     ```bash
     xcode-select --install
