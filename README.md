@@ -32,19 +32,25 @@ Updating does this:
     xcode-select --install
     ```
 
-2. Install Pie:
+2. Accept Xcode license:
+
+    ```bash
+    sudo xcodebuild -license accept
+    ```
+
+3. Install Pie:
 
     ```bash
     git clone https://github.com/willfaught/pie ~/Developer/pie
     ```
 
-3. Install Mac:
+4. Install Mac:
 
     ```bash
     ~/Developer/pie/install --verbose
     ```
 
-4. Update Mac:
+5. Update Mac:
 
     ```bash
     ~/Developer/pie/install --verbose --update
