@@ -11,7 +11,7 @@ Installing does this:
 3. **Files:** Soft links configuration files.
 4. **Directories:** Creates ~/Developer.
 5. **Terminal:** Installs a [VS Code Dark Plus](https://github.com/lysyi3m/macos-terminal-themes#vs-code-dark-plus-download) profile for Terminal.
-6. **Software:** Installs [Homebrew](https://brew.sh) and various packages, [Fisher](https://github.com/jorgebucaran/fisher), [Pure](https://github.com/pure-fish/pure), and [Whorl](https://github.com/willfaught/whorl). Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
+6. **Software:** Installs [Homebrew](https://brew.sh) and various packages, [Fisher](https://github.com/jorgebucaran/fisher), [Pure](https://github.com/pure-fish/pure), and [astronvim-config](https://github.com/willfaught/astronvim-config). Changes the shell to [Fish](https://github.com/fish-shell/fish-shell).
 
 Steps are skipped if already done if possible. Conflicting files are backed up by renaming them.
 
