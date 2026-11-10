@@ -21,6 +21,7 @@
         "markdown": false,
         "scminput": false
     },
+    "github.copilot.nextEditSuggestions.enabled": false,
     "go.buildTags": "integration",
     "go.editorContextMenuCommands": {
         "testAtCursor": true,
@@ -41,10 +42,9 @@
     "html.format.wrapLineLength": 0,
     "update.mode": "none",
     "workbench.editor.empty.hint": "hidden",
+    "workbench.experimental.modernUI": true,
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
         "editor.formatOnType": true
-    },
-    "github.copilot.nextEditSuggestions.enabled": false,
-    "workbench.experimental.modernUI": true
+    }
 }
