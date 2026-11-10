@@ -39,6 +39,7 @@
     "html.format.indentHandlebars": true,
     "html.format.indentInnerHtml": true,
     "html.format.wrapLineLength": 0,
+    "update.mode": "none",
     "workbench.editor.empty.hint": "hidden",
     "workbench.startupEditor": "newUntitledFile",
     "[python]": {
